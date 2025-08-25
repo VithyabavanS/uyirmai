@@ -18,6 +18,11 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'sans': ['Montserrat', 'sans-serif'],
+				'serif': ['Merriweather', 'serif'],
+				'heading': ['Merriweather', 'serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

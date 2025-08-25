@@ -8,35 +8,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Nature-inspired color palette */
+    --background: 47 31% 96%; /* Soft cream */
+    --foreground: 151 30% 15%; /* Deep forest green */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 45 25% 98%; /* Warm white */
+    --card-foreground: 151 30% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 45 25% 98%;
+    --popover-foreground: 151 30% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 151 55% 35%; /* Forest green */
+    --primary-foreground: 47 31% 96%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 28 45% 25%; /* Earth brown */
+    --secondary-foreground: 47 31% 96%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 47 20% 90%; /* Light beige */
+    --muted-foreground: 151 25% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 95 60% 45%; /* Fresh leaf green */
+    --accent-foreground: 151 30% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 47 31% 96%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 47 15% 85%;
+    --input: 47 15% 90%;
+    --ring: 151 55% 35%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Custom nature gradients */
+    --gradient-nature: linear-gradient(135deg, hsl(151, 55%, 35%), hsl(95, 60%, 45%));
+    --gradient-earth: linear-gradient(135deg, hsl(28, 45%, 25%), hsl(28, 35%, 35%));
+    --gradient-organic: linear-gradient(180deg, hsl(47, 31%, 96%), hsl(47, 20%, 90%));
+    --gradient-hero: linear-gradient(135deg, hsl(151, 55%, 35%) 0%, hsl(95, 60%, 45%) 50%, hsl(28, 45%, 25%) 100%);
+
+    /* Custom shadows */
+    --shadow-nature: 0 10px 25px -5px hsl(151, 55%, 35% / 0.1);
+    --shadow-organic: 0 4px 20px -4px hsl(28, 45%, 25% / 0.15);
+    
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +116,120 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  /* Hero animations */
+  .hero-fade-in {
+    animation: hero-fade-in 1.5s ease-out forwards;
+  }
+
+  .hero-zoom {
+    animation: hero-zoom 20s ease-in-out infinite;
+  }
+
+  /* Card animations */
+  .card-hover {
+    transition: var(--transition-smooth);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-nature);
+  }
+
+  /* Nature-inspired animations */
+  .organic-float {
+    animation: organic-float 6s ease-in-out infinite;
+  }
+
+  .leaf-sway {
+    animation: leaf-sway 4s ease-in-out infinite alternate;
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-nature {
+    background: var(--gradient-nature);
+  }
+
+  .bg-gradient-earth {
+    background: var(--gradient-earth);
+  }
+
+  .bg-gradient-organic {
+    background: var(--gradient-organic);
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+}
+
+@layer utilities {
+  /* Custom shadows */
+  .shadow-nature {
+    box-shadow: var(--shadow-nature);
+  }
+
+  .shadow-organic {
+    box-shadow: var(--shadow-organic);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-slow {
+    transition: var(--transition-slow);
+  }
+}
+
+/* Keyframe animations */
+@keyframes hero-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-zoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes organic-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes leaf-sway {
+  0% {
+    transform: translateX(0px) rotate(-2deg);
+  }
+  100% {
+    transform: translateX(10px) rotate(2deg);
   }
 }
