@@ -4,8 +4,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Blog = () => {
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -89,11 +91,10 @@ const Blog = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
-            Blog & Stories
+            {t('blogTitle')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed hero-fade-in" style={{animationDelay: '0.3s'}}>
-            Discover insights, stories, and practical tips from our community of 
-            sustainable living enthusiasts and permaculture experts.
+            {t('blogSubtitle')}
           </p>
         </div>
 
@@ -102,7 +103,7 @@ const Blog = () => {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
             <Input 
-              placeholder="Search articles..."
+              placeholder={t('searchPlaceholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 bg-card"
@@ -110,15 +111,15 @@ const Blog = () => {
           </div>
           <div className="flex flex-wrap gap-2">
             {categories.map(category => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedCategory(category)}
-                className="text-xs"
-              >
-                {category}
-              </Button>
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category)}
+                  className="text-xs"
+                >
+                  {category === 'All' ? t('allCategories') : category}
+                </Button>
             ))}
           </div>
         </div>
@@ -157,7 +158,7 @@ const Blog = () => {
                   <span>{featuredPost.readTime}</span>
                 </div>
                 <Button className="bg-gradient-nature">
-                  Read Full Article
+                  {t('readMore')}
                 </Button>
               </div>
             </div>
@@ -206,7 +207,7 @@ const Blog = () => {
                   </div>
                 </div>
                 <Button variant="outline" size="sm" className="w-full">
-                  Read More
+                  {t('readMore')}
                 </Button>
               </CardContent>
             </Card>

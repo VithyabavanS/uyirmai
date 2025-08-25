@@ -4,8 +4,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Products = () => {
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -168,11 +170,10 @@ const Products = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
-            Products & Services
+            {t('productsTitle')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed hero-fade-in" style={{animationDelay: '0.3s'}}>
-            Discover our curated selection of organic products and professional services 
-            to support your sustainable living and permaculture journey.
+            {t('productsSubtitle')}
           </p>
         </div>
 

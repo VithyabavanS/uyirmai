@@ -3,12 +3,15 @@ import { Calendar, MapPin, Users, Clock } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Projects = () => {
+  const { t } = useLanguage();
+  
   const projects = [
     {
-      title: "Community Garden Initiative",
-      description: "Establishing sustainable community gardens in urban areas to promote local food production and community bonding.",
+      title: t('communityGarden'),
+      description: t('communityGardenDesc'),
       status: "ongoing",
       location: "Chennai, Tamil Nadu",
       participants: 45,
@@ -16,8 +19,8 @@ const Projects = () => {
       category: "Community Development"
     },
     {
-      title: "Organic Farming Training Program", 
-      description: "Comprehensive 6-month program teaching sustainable farming techniques to local farmers.",
+      title: t('organicTraining'), 
+      description: t('organicTrainingDesc'),
       status: "completed",
       location: "Coimbatore, Tamil Nadu", 
       participants: 120,
@@ -25,8 +28,8 @@ const Projects = () => {
       category: "Education"
     },
     {
-      title: "Seed Library Project",
-      description: "Creating a community seed bank to preserve native varieties and promote biodiversity.",
+      title: t('seedLibrary'),
+      description: t('seedLibraryDesc'),
       status: "upcoming",
       location: "Multiple locations",
       participants: 30,
@@ -76,18 +79,17 @@ const Projects = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
-            Projects & Events
+            {t('projectsTitle')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed hero-fade-in" style={{animationDelay: '0.3s'}}>
-            Discover our ongoing initiatives and join upcoming events that are shaping 
-            sustainable communities across Tamil Nadu.
+            {t('projectsSubtitle')}
           </p>
         </div>
 
         {/* Projects Section */}
         <div className="mb-20">
           <h2 className="text-3xl font-heading font-bold text-foreground mb-8">
-            Current Projects
+            {t('currentProjects')}
           </h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -100,7 +102,7 @@ const Projects = () => {
                 <CardHeader>
                   <div className="flex items-start justify-between mb-2">
                     <Badge className={`${getStatusColor(project.status)} text-white text-xs`}>
-                      {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+                      {t(project.status)}
                     </Badge>
                     <Badge variant="outline" className="text-xs">
                       {project.category}
@@ -120,14 +122,14 @@ const Projects = () => {
                   </div>
                   <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Users size={16} />
-                    <span>{project.participants} participants</span>
+                    <span>{project.participants} {t('participants')}</span>
                   </div>
                   <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Calendar size={16} />
-                    <span>Started: {project.startDate}</span>
+                    <span>{t('started')} {project.startDate}</span>
                   </div>
                   <Button variant="outline" size="sm" className="w-full mt-4">
-                    Learn More
+                    {t('learnMore')}
                   </Button>
                 </CardContent>
               </Card>
@@ -138,7 +140,7 @@ const Projects = () => {
         {/* Upcoming Events Section */}
         <div>
           <h2 className="text-3xl font-heading font-bold text-foreground mb-8">
-            Upcoming Events
+            {t('upcomingEvents')}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -154,7 +156,7 @@ const Projects = () => {
                       {event.type}
                     </Badge>
                     <span className="text-xs text-muted-foreground">
-                      {event.spots} spots available
+                      {event.spots} {t('spotsAvailable')}
                     </span>
                   </div>
                   <CardTitle className="text-lg font-heading text-foreground line-clamp-2">
@@ -175,7 +177,7 @@ const Projects = () => {
                     <span>{event.location}</span>
                   </div>
                   <Button className="w-full mt-4 bg-gradient-nature">
-                    Register Now
+                    {t('registerNow')}
                   </Button>
                 </CardContent>
               </Card>

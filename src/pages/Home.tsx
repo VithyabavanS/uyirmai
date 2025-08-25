@@ -17,7 +17,7 @@ const Home = () => {
     },
     {
       icon: Users,
-      title: "Community Workshops",
+      title: "Community Workshops", 
       description: "Join hands-on workshops and connect with like-minded individuals passionate about organic living.",
     },
     {

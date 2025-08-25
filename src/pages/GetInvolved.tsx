@@ -5,8 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const GetInvolved = () => {
+  const { t } = useLanguage();
   const opportunities = [
     {
       icon: Users,
@@ -115,18 +117,17 @@ const GetInvolved = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
-            Get Involved
+            {t('getInvolvedTitle')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed hero-fade-in" style={{animationDelay: '0.3s'}}>
-            Join our mission to create sustainable communities. Whether through volunteering, 
-            learning, or sharing your skills, there's a place for you in the Uyirmai family.
+            {t('getInvolvedSubtitle')}
           </p>
         </div>
 
         {/* Volunteer Opportunities */}
         <div className="mb-20">
           <h2 className="text-3xl font-heading font-bold text-foreground text-center mb-12">
-            Volunteer Opportunities
+            {t('volunteerOpportunities')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {opportunities.map((opportunity, index) => (

@@ -4,8 +4,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Resources = () => {
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const categories = ['All', 'Guides', 'Videos', 'Documents', 'Tools'];
@@ -121,11 +123,10 @@ const Resources = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
-            Resources Library
+            {t('resourcesTitle')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed hero-fade-in" style={{animationDelay: '0.3s'}}>
-            Access our comprehensive collection of guides, videos, and tools to support 
-            your sustainable living and permaculture journey.
+            {t('resourcesSubtitle')}
           </p>
         </div>
 
@@ -146,7 +147,7 @@ const Resources = () => {
         {/* Featured Resources */}
         <div className="mb-16">
           <h2 className="text-2xl font-heading font-bold text-foreground mb-8">
-            Featured Resources
+            {t('featuredPosts')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {resources.filter(r => r.featured).map((resource, index) => (
@@ -183,7 +184,7 @@ const Resources = () => {
                   </div>
                   <Button className="w-full bg-gradient-nature">
                     <Download size={16} className="mr-2" />
-                    {resource.type === 'Video' || resource.type === 'Video Series' ? 'Watch' : 'Download'}
+                    {resource.type === 'Video' || resource.type === 'Video Series' ? t('watchVideo') : t('downloadPdf')}
                   </Button>
                 </CardContent>
               </Card>
@@ -233,7 +234,7 @@ const Resources = () => {
                   </div>
                   <Button variant="outline" size="sm" className="w-full">
                     <Download size={14} className="mr-2" />
-                    {resource.type.includes('Video') ? 'Watch' : 'Download'}
+                    {resource.type.includes('Video') ? t('watchVideo') : t('downloadPdf')}
                   </Button>
                 </CardContent>
               </Card>
@@ -244,7 +245,7 @@ const Resources = () => {
         {/* Techniques & Guides */}
         <div>
           <h2 className="text-2xl font-heading font-bold text-foreground mb-8">
-            Techniques & Quick Guides
+            {t('techniques')}
           </h2>
           <div className="max-w-4xl mx-auto">
             <Accordion type="multiple" className="space-y-4">
