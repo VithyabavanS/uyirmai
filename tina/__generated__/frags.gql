@@ -1,0 +1,184 @@
+fragment HomeParts on Home {
+  __typename
+  heroTitle
+  heroSubtitle
+  heroButton
+  featuresSection {
+    __typename
+    title
+    subtitle
+  }
+  features {
+    __typename
+    title
+    description
+  }
+  cta {
+    __typename
+    title
+    subtitle
+  }
+}
+
+fragment PhilosophyParts on Philosophy {
+  __typename
+  title
+  subtitle
+  mission {
+    __typename
+    title
+    text
+  }
+  vision {
+    __typename
+    title
+    text
+  }
+  purpose {
+    __typename
+    title
+    text
+  }
+  coreValuesTitle
+  coreValues {
+    __typename
+    title
+    description
+  }
+}
+
+fragment ProjectsParts on Projects {
+  __typename
+  title
+  subtitle
+  projectsTitle
+  projects {
+    __typename
+    title
+    description
+    status
+    location
+    participants
+    startDate
+    category
+  }
+  eventsTitle
+  upcomingEvents {
+    __typename
+    title
+    date
+    time
+    location
+    type
+    spots
+  }
+}
+
+fragment ResourcesParts on Resources {
+  __typename
+  title
+  subtitle
+  featuredResourcesTitle
+  allResourcesTitle
+  techniquesTitle
+  resources {
+    __typename
+    title
+    description
+    type
+    category
+    size
+    duration
+    downloads
+    views
+    featured
+  }
+  techniques {
+    __typename
+    title
+    items
+  }
+}
+
+fragment Get_involvedParts on Get_involved {
+  __typename
+  title
+  subtitle
+  volunteerOpportunitiesTitle
+  opportunities {
+    __typename
+    title
+    description
+    commitment
+    type
+    benefits
+  }
+  coursesTitle
+  courses {
+    __typename
+    title
+    duration
+    format
+    level
+    nextSession
+    price
+    highlights
+  }
+  howToGetStartedTitle
+  steps {
+    __typename
+    number
+    title
+    description
+  }
+  contactFormTitle
+  contactFormDescription
+}
+
+fragment ProductsParts on Products {
+  __typename
+  title
+  subtitle
+  featuredProductsTitle
+  allProductsTitle
+  servicesTitle
+  products {
+    __typename
+    name
+    price
+    originalPrice
+    image
+    category
+    rating
+    reviews
+    inStock
+    featured
+    organic
+    description
+    features
+  }
+  services {
+    __typename
+    title
+    price
+    description
+    features
+  }
+}
+
+fragment BlogParts on Blog {
+  __typename
+  title
+  subtitle
+  blogPosts {
+    __typename
+    title
+    excerpt
+    author
+    date
+    category
+    readTime
+    image
+    featured
+  }
+}
