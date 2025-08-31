@@ -5,32 +5,31 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import heroImage from '@/assets/hero-image.jpg';
+import { useTina } from 'tinacms/dist/react';
+import client from '../../tina/__generated__/client';
 
-const Home = () => {
+const Home = (props) => {
   const { t } = useLanguage();
 
-  const features = [
-    {
-      icon: Leaf,
-      title: "Sustainable Practices",
-      description: "Learn permaculture techniques for sustainable agriculture and environmental stewardship.",
-    },
-    {
-      icon: Users,
-      title: "Community Workshops", 
-      description: "Join hands-on workshops and connect with like-minded individuals passionate about organic living.",
-    },
-    {
-      icon: BookOpen,
-      title: "Educational Resources",
-      description: "Access comprehensive guides, videos, and materials for your permaculture journey.",
-    },
-    {
-      icon: ShoppingBag,
-      title: "Organic Products",
-      description: "Discover our range of organic seeds, tools, and eco-friendly products.",
-    },
-  ];
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
+
+  const homeData = data.home;
+
+  const featureIcons = {
+    "Sustainable Practices": Leaf,
+    "Community Workshops": Users,
+    "Educational Resources": BookOpen,
+    "Organic Products": ShoppingBag,
+  };
+
+  const features = homeData.features.map((feature) => ({
+    ...feature,
+    icon: featureIcons[feature.title],
+  }));
 
   const latestPosts = [
     {
@@ -64,11 +63,11 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
         
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 hero-fade-in">
-            {t('heroTitle')}
+          <h1 data-tina-field="heroTitle" className="text-4xl md:text-6xl font-heading font-bold mb-6 hero-fade-in">
+            {homeData.heroTitle}
           </h1>
-          <p className="text-lg md:text-xl mb-8 opacity-90 hero-fade-in" style={{animationDelay: '0.3s'}}>
-            {t('heroSubtitle')}
+          <p data-tina-field="heroSubtitle" className="text-lg md:text-xl mb-8 opacity-90 hero-fade-in" style={{animationDelay: '0.3s'}}>
+            {homeData.heroSubtitle}
           </p>
           <Button 
             size="lg" 
@@ -77,7 +76,7 @@ const Home = () => {
             asChild
           >
             <Link to="/philosophy">
-              {t('heroButton')}
+              <span data-tina-field="heroButton">{homeData.heroButton}</span>
               <ArrowRight className="ml-2" size={20} />
             </Link>
           </Button>
@@ -95,12 +94,11 @@ const Home = () => {
       <section className="py-20 bg-gradient-organic">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Our Mission in Action
+            <h2 data-tina-field="featuresSection.title" className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+              {homeData.featuresSection.title}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover how we're building sustainable communities through education, 
-              practice, and shared knowledge.
+            <p data-tina-field="featuresSection.subtitle" className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              {homeData.featuresSection.subtitle}
             </p>
           </div>
 
@@ -109,17 +107,18 @@ const Home = () => {
               <Card 
                 key={index} 
                 className="card-hover bg-card border-0 shadow-organic text-center group"
+                data-tina-field={`features.${index}`}
               >
                 <CardHeader className="pb-4">
                   <div className="w-16 h-16 mx-auto bg-gradient-nature rounded-full flex items-center justify-center mb-4 organic-float group-hover:scale-110 transition-smooth">
                     <feature.icon size={24} className="text-primary-foreground" />
                   </div>
-                  <CardTitle className="text-xl font-heading text-foreground">
+                  <CardTitle data-tina-field="title" className="text-xl font-heading text-foreground">
                     {feature.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-muted-foreground leading-relaxed">
+                  <CardDescription data-tina-field="description" className="text-muted-foreground leading-relaxed">
                     {feature.description}
                   </CardDescription>
                 </CardContent>
@@ -176,12 +175,11 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-nature text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-            Ready to Start Your Journey?
+          <h2 data-tina-field="cta.title" className="text-3xl md:text-4xl font-heading font-bold mb-6">
+            {homeData.cta.title}
           </h2>
-          <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Join our community of sustainable living enthusiasts and begin your 
-            permaculture journey today.
+          <p data-tina-field="cta.subtitle" className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+            {homeData.cta.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -195,7 +193,7 @@ const Home = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              className="px-8 border-primary-foreground text-black hover:bg-primary-foreground hover:text-primary"
               asChild
             >
               <Link to="/products">Explore Products</Link>
@@ -207,4 +205,21 @@ const Home = () => {
   );
 };
 
-export default Home;
+const HomePage = () => {
+  const { language } = useLanguage();
+  const [props, setProps] = React.useState(null);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const res = await client.queries.home({
+        relativePath: `${language}.json`,
+      });
+      setProps(res);
+    };
+    fetchData();
+  }, [language]);
+
+  return props ? <Home {...props} /> : <div>Loading...</div>;
+}
+
+export default HomePage;

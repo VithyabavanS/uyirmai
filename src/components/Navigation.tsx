@@ -31,13 +31,13 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-nature rounded-full flex items-center justify-center organic-float">
-              <span className="text-primary-foreground font-heading font-bold text-lg">U</span>
-            </div>
-            <span className="font-heading text-xl font-semibold text-foreground group-hover:text-primary transition-smooth">
-              Uyirmai
-            </span>
-          </Link>
+          <div className="w-10 h-10 bg-gradient-nature rounded-full flex items-center justify-center organic-float">
+            <img src="/logo.png" alt="Uyirmai Logo" className="w-10 h-10 object-contain" />
+          </div>
+          <span className="font-heading text-xl font-semibold text-foreground group-hover:text-primary transition-smooth">
+            Uyirmai
+          </span>
+        </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

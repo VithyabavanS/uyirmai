@@ -1,0 +1,31 @@
+{
+  "heroTitle": "பெர்மாகல்ச்சர் மூலம் வாழ்வைப் பயிரிடுதல்",
+  "heroSubtitle": "இயற்கை விவசாயம், கல்வி மற்றும் நினைவுப்பூர்வமான வாழ்க்கை முறைகள் மூலம் நிலையான சமூகங்களை உருவாக்குவதில் எங்களுடன் சேருங்கள்.",
+  "heroButton": "எங்கள் நோக்கத்தை ஆராயுங்கள்",
+  "featuresSection": {
+    "title": "Our Mission in Action",
+    "subtitle": "Discover how we're building sustainable communities through education, practice, and shared knowledge."
+  },
+  "features": [
+    {
+      "title": "Sustainable Practices",
+      "description": "Learn permaculture techniques for sustainable agriculture and environmental stewardship."
+    },
+    {
+      "title": "Community Workshops",
+      "description": "Join hands-on workshops and connect with like-minded individuals passionate about organic living."
+    },
+    {
+      "title": "Educational Resources",
+      "description": "Access comprehensive guides, videos, and materials for your permaculture journey."
+    },
+    {
+      "title": "Organic Products",
+      "description": "Discover our range of organic seeds, tools, and eco-friendly products."
+    }
+  ],
+  "cta": {
+    "title": "Ready to Start Your Journey?",
+    "subtitle": "Join our community of sustainable living enthusiasts and begin your permaculture journey today."
+  }
+}

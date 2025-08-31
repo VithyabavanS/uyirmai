@@ -4,68 +4,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTina } from 'tinacms/dist/react';
+import client from '../../tina/__generated__/client';
 
-const Projects = () => {
+const Projects = (props) => {
   const { t } = useLanguage();
+
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
+
+  const pageData = data.projects;
   
-  const projects = [
-    {
-      title: t('communityGarden'),
-      description: t('communityGardenDesc'),
-      status: "ongoing",
-      location: "Chennai, Tamil Nadu",
-      participants: 45,
-      startDate: "January 2024",
-      category: "Community Development"
-    },
-    {
-      title: t('organicTraining'), 
-      description: t('organicTrainingDesc'),
-      status: "completed",
-      location: "Coimbatore, Tamil Nadu", 
-      participants: 120,
-      startDate: "September 2023",
-      category: "Education"
-    },
-    {
-      title: t('seedLibrary'),
-      description: t('seedLibraryDesc'),
-      status: "upcoming",
-      location: "Multiple locations",
-      participants: 30,
-      startDate: "May 2024",
-      category: "Conservation"
-    }
-  ];
-
-  const upcomingEvents = [
-    {
-      title: "Permaculture Design Course",
-      date: "April 15-17, 2024",
-      time: "9:00 AM - 5:00 PM",
-      location: "Uyirmai Learning Center",
-      type: "Workshop",
-      spots: 20
-    },
-    {
-      title: "Composting & Soil Health Workshop",
-      date: "April 22, 2024",
-      time: "2:00 PM - 6:00 PM", 
-      location: "Online & On-site",
-      type: "Hybrid Event",
-      spots: 50
-    },
-    {
-      title: "Sustainable Living Fair",
-      date: "May 5-6, 2024",
-      time: "10:00 AM - 7:00 PM",
-      location: "Green Valley Exhibition Center",
-      type: "Fair",
-      spots: 200
-    }
-  ];
-
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status) => {
     switch (status) {
       case 'ongoing': return 'bg-accent';
       case 'completed': return 'bg-primary';
@@ -78,26 +31,27 @@ const Projects = () => {
     <div className="min-h-screen bg-gradient-organic">
       <div className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
-            {t('projectsTitle')}
+          <h1 data-tina-field="title" className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
+            {pageData.title}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed hero-fade-in" style={{animationDelay: '0.3s'}}>
-            {t('projectsSubtitle')}
+          <p data-tina-field="subtitle" className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed hero-fade-in" style={{animationDelay: '0.3s'}}>
+            {pageData.subtitle}
           </p>
         </div>
 
         {/* Projects Section */}
         <div className="mb-20">
-          <h2 className="text-3xl font-heading font-bold text-foreground mb-8">
-            {t('currentProjects')}
+          <h2 data-tina-field="projectsTitle" className="text-3xl font-heading font-bold text-foreground mb-8">
+            {pageData.projectsTitle}
           </h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+            {pageData.projects.map((project, index) => (
               <Card 
                 key={index} 
                 className="card-hover shadow-organic border-0 h-full hero-fade-in"
                 style={{animationDelay: `${index * 0.2}s`}}
+                data-tina-field={`projects.${index}`}
               >
                 <CardHeader>
                   <div className="flex items-start justify-between mb-2">
@@ -108,23 +62,23 @@ const Projects = () => {
                       {project.category}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl font-heading text-foreground line-clamp-2">
+                  <CardTitle data-tina-field="title" className="text-xl font-heading text-foreground line-clamp-2">
                     {project.title}
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground">
+                  <CardDescription data-tina-field="description" className="text-muted-foreground">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <div data-tina-field="location" className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <MapPin size={16} />
                     <span>{project.location}</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <div data-tina-field="participants" className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Users size={16} />
                     <span>{project.participants} {t('participants')}</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <div data-tina-field="startDate" className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Calendar size={16} />
                     <span>{t('started')} {project.startDate}</span>
                   </div>
@@ -139,40 +93,41 @@ const Projects = () => {
 
         {/* Upcoming Events Section */}
         <div>
-          <h2 className="text-3xl font-heading font-bold text-foreground mb-8">
-            {t('upcomingEvents')}
+          <h2 data-tina-field="eventsTitle" className="text-3xl font-heading font-bold text-foreground mb-8">
+            {pageData.eventsTitle}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {upcomingEvents.map((event, index) => (
+            {pageData.upcomingEvents.map((event, index) => (
               <Card 
                 key={index} 
                 className="card-hover shadow-nature border-0 hero-fade-in"
                 style={{animationDelay: `${index * 0.15}s`}}
+                data-tina-field={`upcomingEvents.${index}`}
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline" className="text-xs">
+                    <Badge data-tina-field="type" variant="outline" className="text-xs">
                       {event.type}
                     </Badge>
-                    <span className="text-xs text-muted-foreground">
+                    <span data-tina-field="spots" className="text-xs text-muted-foreground">
                       {event.spots} {t('spotsAvailable')}
                     </span>
                   </div>
-                  <CardTitle className="text-lg font-heading text-foreground line-clamp-2">
+                  <CardTitle data-tina-field="title" className="text-lg font-heading text-foreground line-clamp-2">
                     {event.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <div data-tina-field="date" className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Calendar size={16} />
                     <span>{event.date}</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <div data-tina-field="time" className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Clock size={16} />
                     <span>{event.time}</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <div data-tina-field="location" className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <MapPin size={16} />
                     <span>{event.location}</span>
                   </div>
@@ -189,4 +144,21 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+const ProjectsPage = () => {
+  const { language } = useLanguage();
+  const [props, setProps] = React.useState(null);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const res = await client.queries.projects({
+        relativePath: `${language}.json`,
+      });
+      setProps(res);
+    };
+    fetchData();
+  }, [language]);
+
+  return props ? <Projects {...props} /> : <div>Loading...</div>;
+}
+
+export default ProjectsPage;

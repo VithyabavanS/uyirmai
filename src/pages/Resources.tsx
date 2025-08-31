@@ -5,128 +5,44 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTina } from 'tinacms/dist/react';
+import client from '../../tina/__generated__/client';
 
-const Resources = () => {
+const Resources = (props) => {
   const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'Guides', 'Videos', 'Documents', 'Tools'];
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
 
-  const resources = [
-    {
-      title: "Permaculture Design Principles Guide",
-      description: "Comprehensive 50-page guide covering all 12 principles of permaculture design with practical examples.",
-      type: "PDF",
-      category: "Guides",
-      size: "2.3 MB",
-      downloads: 1245,
-      icon: FileText,
-      featured: true
-    },
-    {
-      title: "Organic Composting Techniques",
-      description: "Step-by-step video series on creating nutrient-rich compost using organic materials.",
-      type: "Video Series",
-      category: "Videos", 
-      duration: "45 min",
-      views: 3420,
-      icon: Video,
-      featured: false
-    },
-    {
-      title: "Seasonal Planting Calendar - Tamil Nadu",
-      description: "Month-by-month planting guide specifically designed for Tamil Nadu's climate and soil conditions.",
-      type: "PDF",
-      category: "Documents",
-      size: "1.8 MB", 
-      downloads: 892,
-      icon: FileText,
-      featured: false
-    },
-    {
-      title: "Companion Planting Chart",
-      description: "Visual guide showing which plants grow best together for maximum yield and natural pest control.", 
-      type: "Infographic",
-      category: "Guides",
-      size: "850 KB",
-      downloads: 2156,
-      icon: FileText,
-      featured: true
-    },
-    {
-      title: "Natural Pest Control Workshop",
-      description: "Complete workshop recording covering identification and organic treatment of common garden pests.",
-      type: "Video",
-      category: "Videos",
-      duration: "2 hours",
-      views: 1876,
-      icon: Video,
-      featured: false
-    },
-    {
-      title: "Seed Starting Techniques Manual",
-      description: "Detailed manual on starting seeds indoors and outdoors, including timing and care instructions.",
-      type: "Document",
-      category: "Documents", 
-      size: "1.2 MB",
-      downloads: 678,
-      icon: BookOpen,
-      featured: false
-    }
-  ];
+  const pageData = data.resources;
 
-  const techniques = [
-    {
-      title: "Water Management",
-      items: [
-        "Rainwater Harvesting Systems",
-        "Drip Irrigation Setup", 
-        "Greywater Recycling",
-        "Swales and Berms Construction"
-      ]
-    },
-    {
-      title: "Soil Health",
-      items: [
-        "Composting Methods",
-        "Soil Testing Techniques",
-        "Natural Fertilizer Recipes",
-        "Mulching Strategies"
-      ]
-    },
-    {
-      title: "Plant Care",
-      items: [
-        "Organic Pest Management",
-        "Companion Planting Guide", 
-        "Pruning Techniques",
-        "Disease Prevention"
-      ]
-    },
-    {
-      title: "Sustainable Practices",
-      items: [
-        "Energy-Efficient Greenhouse Design",
-        "Zero-Waste Garden Methods",
-        "Renewable Energy Integration",
-        "Carbon Footprint Reduction"
-      ]
-    }
-  ];
+  const categories = ['All', ...new Set(pageData.resources.map(r => r.category))];
+
+  const resourceIcons = {
+    PDF: FileText,
+    'Video Series': Video,
+    Infographic: FileText,
+    Video: Video,
+    Document: BookOpen,
+  };
 
   const filteredResources = selectedCategory === 'All' 
-    ? resources 
-    : resources.filter(resource => resource.category === selectedCategory);
+    ? pageData.resources 
+    : pageData.resources.filter(resource => resource.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-gradient-organic">
       <div className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
-            {t('resourcesTitle')}
+          <h1 data-tina-field="title" className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
+            {pageData.title}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed hero-fade-in" style={{animationDelay: '0.3s'}}>
-            {t('resourcesSubtitle')}
+          <p data-tina-field="subtitle" className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed hero-fade-in" style={{animationDelay: '0.3s'}}>
+            {pageData.subtitle}
           </p>
         </div>
 
@@ -146,40 +62,43 @@ const Resources = () => {
 
         {/* Featured Resources */}
         <div className="mb-16">
-          <h2 className="text-2xl font-heading font-bold text-foreground mb-8">
-            {t('featuredPosts')}
+          <h2 data-tina-field="featuredResourcesTitle" className="text-2xl font-heading font-bold text-foreground mb-8">
+            {pageData.featuredResourcesTitle}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {resources.filter(r => r.featured).map((resource, index) => (
+            {pageData.resources.filter(r => r.featured).map((resource, index) => {
+              const Icon = resourceIcons[resource.type];
+              return (
               <Card 
                 key={index} 
                 className="card-hover shadow-nature border-0 hero-fade-in"
                 style={{animationDelay: `${index * 0.2}s`}}
+                data-tina-field={`resources.${index}`}
               >
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <Badge className="bg-accent text-white">Featured</Badge>
                     <div className="flex items-center space-x-1 text-muted-foreground">
-                      <resource.icon size={16} />
-                      <span className="text-sm">{resource.type}</span>
+                      <Icon size={16} />
+                      <span data-tina-field="type" className="text-sm">{resource.type}</span>
                     </div>
                   </div>
-                  <CardTitle className="font-heading text-xl text-foreground">
+                  <CardTitle data-tina-field="title" className="font-heading text-xl text-foreground">
                     {resource.title}
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription data-tina-field="description">
                     {resource.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-sm text-muted-foreground">
-                      {resource.size && `Size: ${resource.size}`}
-                      {resource.duration && `Duration: ${resource.duration}`}
+                      {resource.size && <span data-tina-field="size">Size: {resource.size}</span>}
+                      {resource.duration && <span data-tina-field="duration">Duration: {resource.duration}</span>}
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      {resource.downloads && `${resource.downloads} downloads`}
-                      {resource.views && `${resource.views} views`}
+                      {resource.downloads && <span data-tina-field="downloads">{resource.downloads} downloads</span>}
+                      {resource.views && <span data-tina-field="views">{resource.views} views</span>}
                     </div>
                   </div>
                   <Button className="w-full bg-gradient-nature">
@@ -188,48 +107,52 @@ const Resources = () => {
                   </Button>
                 </CardContent>
               </Card>
-            ))}
+            )})
+          }
           </div>
         </div>
 
         {/* All Resources */}
         <div className="mb-16">
-          <h2 className="text-2xl font-heading font-bold text-foreground mb-8">
-            All Resources
+          <h2 data-tina-field="allResourcesTitle" className="text-2xl font-heading font-bold text-foreground mb-8">
+            {pageData.allResourcesTitle}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredResources.filter(r => !r.featured).map((resource, index) => (
+            {filteredResources.filter(r => !r.featured).map((resource, index) => {
+              const Icon = resourceIcons[resource.type];
+              return (
               <Card 
                 key={index} 
                 className="card-hover shadow-organic border-0 hero-fade-in"
                 style={{animationDelay: `${index * 0.1}s`}}
+                data-tina-field={`resources.${index}`}
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline" className="text-xs">
+                    <Badge data-tina-field="category" variant="outline" className="text-xs">
                       {resource.category}
                     </Badge>
                     <div className="flex items-center space-x-1 text-muted-foreground">
-                      <resource.icon size={14} />
-                      <span className="text-xs">{resource.type}</span>
+                      <Icon size={14} />
+                      <span data-tina-field="type" className="text-xs">{resource.type}</span>
                     </div>
                   </div>
-                  <CardTitle className="font-heading text-lg text-foreground line-clamp-2">
+                  <CardTitle data-tina-field="title" className="font-heading text-lg text-foreground line-clamp-2">
                     {resource.title}
                   </CardTitle>
-                  <CardDescription className="text-sm line-clamp-2">
+                  <CardDescription data-tina-field="description" className="text-sm line-clamp-2">
                     {resource.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-0">
                   <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
                     <span>
-                      {resource.size && resource.size}
-                      {resource.duration && resource.duration}
+                      {resource.size && <span data-tina-field="size">{resource.size}</span>}
+                      {resource.duration && <span data-tina-field="duration">{resource.duration}</span>}
                     </span>
                     <span>
-                      {resource.downloads && `${resource.downloads} ↓`}
-                      {resource.views && `${resource.views} views`}
+                      {resource.downloads && <span data-tina-field="downloads">{resource.downloads} ↓</span>}
+                      {resource.views && <span data-tina-field="views">{resource.views} views</span>}
                     </span>
                   </div>
                   <Button variant="outline" size="sm" className="w-full">
@@ -238,25 +161,27 @@ const Resources = () => {
                   </Button>
                 </CardContent>
               </Card>
-            ))}
+            )})
+          }
           </div>
         </div>
 
         {/* Techniques & Guides */}
         <div>
-          <h2 className="text-2xl font-heading font-bold text-foreground mb-8">
-            {t('techniques')}
+          <h2 data-tina-field="techniquesTitle" className="text-2xl font-heading font-bold text-foreground mb-8">
+            {pageData.techniquesTitle}
           </h2>
           <div className="max-w-4xl mx-auto">
             <Accordion type="multiple" className="space-y-4">
-              {techniques.map((technique, index) => (
+              {pageData.techniques.map((technique, index) => (
                 <AccordionItem 
                   key={index} 
                   value={`item-${index}`}
                   className="bg-card rounded-lg border-0 shadow-organic px-6 hero-fade-in"
                   style={{animationDelay: `${index * 0.15}s`}}
+                  data-tina-field={`techniques.${index}`}
                 >
-                  <AccordionTrigger className="font-heading text-lg text-foreground hover:text-primary">
+                  <AccordionTrigger data-tina-field="title" className="font-heading text-lg text-foreground hover:text-primary">
                     {technique.title}
                   </AccordionTrigger>
                   <AccordionContent className="pt-4">
@@ -265,6 +190,7 @@ const Resources = () => {
                         <div 
                           key={itemIndex}
                           className="flex items-center space-x-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-smooth cursor-pointer"
+                          data-tina-field={`items.${itemIndex}`}
                         >
                           <BookOpen size={16} className="text-primary flex-shrink-0" />
                           <span className="text-sm text-foreground">{item}</span>
@@ -282,4 +208,21 @@ const Resources = () => {
   );
 };
 
-export default Resources;
+const ResourcesPage = () => {
+  const { language } = useLanguage();
+  const [props, setProps] = React.useState(null);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const res = await client.queries.resources({
+        relativePath: `${language}.json`,
+      });
+      setProps(res);
+    };
+    fetchData();
+  }, [language]);
+
+  return props ? <Resources {...props} /> : <div>Loading...</div>;
+}
+
+export default ResourcesPage;

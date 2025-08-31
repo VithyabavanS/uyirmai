@@ -1,0 +1,61 @@
+{
+  "title": "Projects & Events",
+  "subtitle": "Discover our ongoing initiatives and join upcoming events that are shaping sustainable communities across Tamil Nadu.",
+  "projectsTitle": "Current Projects",
+  "projects": [
+    {
+      "title": "Community Garden Initiative",
+      "description": "Establishing sustainable community gardens in urban areas to promote local food production and community bonding.",
+      "status": "ongoing",
+      "location": "Chennai, Tamil Nadu",
+      "participants": 45,
+      "startDate": "January 2024",
+      "category": "Community Development"
+    },
+    {
+      "title": "Organic Farming Training Program",
+      "description": "Comprehensive 6-month program teaching sustainable farming techniques to local farmers.",
+      "status": "completed",
+      "location": "Coimbatore, Tamil Nadu",
+      "participants": 120,
+      "startDate": "September 2023",
+      "category": "Education"
+    },
+    {
+      "title": "Seed Library Project",
+      "description": "Creating a community seed bank to preserve native varieties and promote biodiversity.",
+      "status": "upcoming",
+      "location": "Multiple locations",
+      "participants": 30,
+      "startDate": "May 2024",
+      "category": "Conservation"
+    }
+  ],
+  "eventsTitle": "Upcoming Events",
+  "upcomingEvents": [
+    {
+      "title": "Permaculture Design Course",
+      "date": "April 15-17, 2024",
+      "time": "9:00 AM - 5:00 PM",
+      "location": "Uyirmai Learning Center",
+      "type": "Workshop",
+      "spots": 20
+    },
+    {
+      "title": "Composting & Soil Health Workshop",
+      "date": "April 22, 2024",
+      "time": "2:00 PM - 6:00 PM",
+      "location": "Online & On-site",
+      "type": "Hybrid Event",
+      "spots": 50
+    },
+    {
+      "title": "Sustainable Living Fair",
+      "date": "May 5-6, 2024",
+      "time": "10:00 AM - 7:00 PM",
+      "location": "Green Valley Exhibition Center",
+      "type": "Fair",
+      "spots": 200
+    }
+  ]
+}
