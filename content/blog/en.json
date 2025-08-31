@@ -1,0 +1,66 @@
+{
+  "title": "Our Blog",
+  "subtitle": "Dive into our world of sustainable living, organic farming, and community building. Find guides, stories, and insights to inspire your journey.",
+  "blogPosts": [
+    {
+      "title": "Starting Your First Permaculture Garden: A Complete Guide SUMMA",
+      "excerpt": "Learn the fundamental principles of permaculture design and how to apply them in your own backyard. This comprehensive guide covers everything from soil preparation to plant selection.",
+      "author": "Priya Sharma",
+      "date": "March 15, 2024",
+      "category": "Permaculture",
+      "readTime": "8 min read",
+      "image": "/logo.png",
+      "featured": true
+    },
+    {
+      "title": "Traditional Tamil Farming Meets Modern Sustainability",
+      "excerpt": "Exploring how ancient Tamil agricultural practices align perfectly with modern sustainable farming principles. A journey through time and technique.",
+      "author": "Rajesh Kumar",
+      "date": "March 12, 2024",
+      "category": "Organic Farming",
+      "readTime": "6 min read",
+      "image": "/images/blog/tamil-farming.jpg",
+      "featured": false
+    },
+    {
+      "title": "Community Workshop Highlights: Companion Planting Success Stories",
+      "excerpt": "Amazing results from our recent workshop where participants learned the art of companion planting. See the incredible transformations in their gardens.",
+      "author": "Meera Krishnan",
+      "date": "March 10, 2024",
+      "category": "Workshops",
+      "readTime": "5 min read",
+      "image": "/images/blog/companion-planting.jpg",
+      "featured": false
+    },
+    {
+      "title": "Natural Pest Management: Chemical-Free Solutions",
+      "excerpt": "Discover effective organic methods to protect your crops from pests without harming the environment or beneficial insects.",
+      "author": "Arjun Nair",
+      "date": "March 8, 2024",
+      "category": "Organic Farming",
+      "readTime": "7 min read",
+      "image": "/images/blog/pest-management.jpg",
+      "featured": false
+    },
+    {
+      "title": "Building Resilient Communities Through Seed Sharing",
+      "excerpt": "How our seed library project is preserving biodiversity and strengthening community bonds across Tamil Nadu villages.",
+      "author": "Lakshmi Devi",
+      "date": "March 5, 2024",
+      "category": "Community",
+      "readTime": "4 min read",
+      "image": "/images/blog/seed-sharing.jpg",
+      "featured": false
+    },
+    {
+      "title": "Water Harvesting Techniques for Small Farms",
+      "excerpt": "Practical methods for collecting and conserving water on small-scale farms, reducing dependency and increasing sustainability.",
+      "author": "Venkat Raman",
+      "date": "March 3, 2024",
+      "category": "Sustainability",
+      "readTime": "6 min read",
+      "image": "/images/blog/water-harvesting.jpg",
+      "featured": false
+    }
+  ]
+}

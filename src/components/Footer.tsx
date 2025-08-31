@@ -53,7 +53,7 @@ const Footer = () => {
                   key={social.label}
                   variant="outline"
                   size="sm"
-                  className="w-10 h-10 p-0 border-secondary-foreground/20 hover:bg-accent hover:border-accent"
+                  className="w-10 h-10 p-0 border-secondary-foreground/20 text-black hover:bg-accent hover:border-accent"
                   asChild
                 >
                   <a

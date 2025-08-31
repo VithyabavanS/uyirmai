@@ -1,0 +1,121 @@
+{
+  "title": "பங்கேற்க",
+  "subtitle": "எங்கள் சமூகத்தில் சேர்ந்து தன்னார்வத்தின் மூலமாகவும், கற்றலின் மூலமாகவும், எங்கள் திட்டங்களில் பங்கேற்பதன் மூலமாகவும் மாற்றத்தை ஏற்படுத்துங்கள்.",
+  "volunteerOpportunitiesTitle": "தன்னார்வ வாய்ப்புகள்",
+  "opportunities": [
+    {
+      "title": "Community Volunteer",
+      "description": "Join our community garden projects and help establish sustainable food systems in local neighborhoods.",
+      "commitment": "4-8 hours/week",
+      "type": "Ongoing",
+      "benefits": [
+        "Learn hands-on skills",
+        "Connect with community",
+        "Make real impact"
+      ]
+    },
+    {
+      "title": "Workshop Assistant",
+      "description": "Support our educational workshops by helping participants learn permaculture and organic farming techniques.",
+      "commitment": "Weekend workshops",
+      "type": "Flexible",
+      "benefits": [
+        "Teaching experience",
+        "Skill development",
+        "Event coordination"
+      ]
+    },
+    {
+      "title": "Mentorship Program",
+      "description": "Guide newcomers in their sustainable living journey and share your knowledge and experience.",
+      "commitment": "2-3 hours/week",
+      "type": "Long-term",
+      "benefits": [
+        "Leadership skills",
+        "Personal growth",
+        "Community building"
+      ]
+    },
+    {
+      "title": "Professional Services",
+      "description": "Contribute your professional skills in areas like design, marketing, technology, or administration.",
+      "commitment": "Project-based",
+      "type": "Flexible",
+      "benefits": [
+        "Portfolio building",
+        "Networking",
+        "Social impact"
+      ]
+    }
+  ],
+  "coursesTitle": "படிப்புகள் & பயிற்சி",
+  "courses": [
+    {
+      "title": "Permaculture Design Certification",
+      "duration": "12 weeks",
+      "format": "Hybrid (Online + Field)",
+      "level": "Beginner to Advanced",
+      "nextSession": "May 15, 2024",
+      "price": "₹25,000",
+      "highlights": [
+        "72-hour certified course",
+        "Hands-on design projects",
+        "Site visits to working farms",
+        "International certification"
+      ]
+    },
+    {
+      "title": "Organic Farming Intensive",
+      "duration": "6 weeks",
+      "format": "On-site practical",
+      "level": "All levels",
+      "nextSession": "April 20, 2024",
+      "price": "₹18,000",
+      "highlights": [
+        "Soil health management",
+        "Natural pest control",
+        "Crop rotation planning",
+        "Marketing organic produce"
+      ]
+    },
+    {
+      "title": "Sustainable Living Workshop",
+      "duration": "3 days",
+      "format": "Weekend intensive",
+      "level": "Beginner",
+      "nextSession": "April 5-7, 2024",
+      "price": "₹5,000",
+      "highlights": [
+        "Home composting systems",
+        "Water conservation",
+        "Energy efficiency",
+        "Zero-waste practices"
+      ]
+    }
+  ],
+  "howToGetStartedTitle": "How to Get Started",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Explore Opportunities",
+      "description": "Browse our volunteer roles and courses to find what matches your interests and availability."
+    },
+    {
+      "number": "02",
+      "title": "Submit Application",
+      "description": "Fill out our application form with your details, interests, and preferred involvement level."
+    },
+    {
+      "number": "03",
+      "title": "Connect & Orient",
+      "description": "Attend an orientation session to meet the team and understand your role better."
+    },
+    {
+      "number": "04",
+      "title": "Start Making Impact",
+      "description": "Begin your journey with us and start contributing to sustainable community development."
+    }
+  ],
+  "contactFormTitle": "Ready to Join Us?",
+  "contactFormDescription": "Fill out this form and we'll get back to you within 24 hours to discuss how you can get involved with Uyirmai."
+}

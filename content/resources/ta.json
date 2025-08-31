@@ -1,0 +1,101 @@
+{
+  "title": "வளங்கள் & கற்றல்",
+  "subtitle": "நிலையான வாழ்க்கைக்கான எங்கள் விரிவான வழிகாட்டிகள், வீடியோக்கள் மற்றும் கல்வி பொருட்களின் தொகுப்பை அணுகவும்.",
+  "featuredResourcesTitle": "Featured Posts",
+  "allResourcesTitle": "All Resources",
+  "techniquesTitle": "நுட்பங்கள் & முறைகள்",
+  "resources": [
+    {
+      "title": "Permaculture Design Principles Guide",
+      "description": "Comprehensive 50-page guide covering all 12 principles of permaculture design with practical examples.",
+      "type": "PDF",
+      "category": "Guides",
+      "size": "2.3 MB",
+      "downloads": 1245,
+      "featured": true
+    },
+    {
+      "title": "Organic Composting Techniques",
+      "description": "Step-by-step video series on creating nutrient-rich compost using organic materials.",
+      "type": "Video Series",
+      "category": "Videos",
+      "duration": "45 min",
+      "views": 3420,
+      "featured": false
+    },
+    {
+      "title": "Seasonal Planting Calendar - Tamil Nadu",
+      "description": "Month-by-month planting guide specifically designed for Tamil Nadu's climate and soil conditions.",
+      "type": "PDF",
+      "category": "Documents",
+      "size": "1.8 MB",
+      "downloads": 892,
+      "featured": false
+    },
+    {
+      "title": "Companion Planting Chart",
+      "description": "Visual guide showing which plants grow best together for maximum yield and natural pest control.",
+      "type": "Infographic",
+      "category": "Guides",
+      "size": "850 KB",
+      "downloads": 2156,
+      "featured": true
+    },
+    {
+      "title": "Natural Pest Control Workshop",
+      "description": "Complete workshop recording covering identification and organic treatment of common garden pests.",
+      "type": "Video",
+      "category": "Videos",
+      "duration": "2 hours",
+      "views": 1876,
+      "featured": false
+    },
+    {
+      "title": "Seed Starting Techniques Manual",
+      "description": "Detailed manual on starting seeds indoors and outdoors, including timing and care instructions.",
+      "type": "Document",
+      "category": "Documents",
+      "size": "1.2 MB",
+      "downloads": 678,
+      "featured": false
+    }
+  ],
+  "techniques": [
+    {
+      "title": "Water Management",
+      "items": [
+        "Rainwater Harvesting Systems",
+        "Drip Irrigation Setup",
+        "Greywater Recycling",
+        "Swales and Berms Construction"
+      ]
+    },
+    {
+      "title": "Soil Health",
+      "items": [
+        "Composting Methods",
+        "Soil Testing Techniques",
+        "Natural Fertilizer Recipes",
+        "Mulching Strategies"
+      ]
+    },
+    {
+      "title": "Plant Care",
+      "items": [
+        "Organic Pest Management",
+        "Companion Planting Guide",
+        "Pruning Techniques",
+        "Disease Prevention"
+      ]
+    },
+    {
+      "title": "Sustainable Practices",
+      "items": [
+        "Energy-Efficient Greenhouse Design",
+        "Zero-Waste Garden Methods",
+        "Renewable Energy Integration",
+        "Carbon Footprint Reduction"
+      ]
+    }
+  ]
+}

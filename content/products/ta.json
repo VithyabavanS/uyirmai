@@ -1,0 +1,196 @@
+{
+  "title": "தயாரிப்புகள் & சேவைகள்",
+  "subtitle": "நிலையான விவசாயத்திற்கான எங்கள் இயற்கை தயாரிப்புகள் மற்றும் தொழில்முறை ஆலோசனை சேவைகளின் வரம்பைக் கண்டறியுங்கள்.",
+  "featuredProductsTitle": "Featured Products",
+  "allProductsTitle": "All Products",
+  "servicesTitle": "Professional Services",
+  "products": [
+    {
+      "name": "Organic Heirloom Tomato Seeds Collection",
+      "price": 450,
+      "originalPrice": 550,
+      "image": "/placeholder.svg",
+      "category": "Seeds",
+      "rating": 4.8,
+      "reviews": 124,
+      "inStock": true,
+      "featured": true,
+      "organic": true,
+      "description": "Premium collection of 5 heirloom tomato varieties, perfect for organic gardening.",
+      "features": [
+        "Non-GMO",
+        "Organic certified",
+        "High germination rate",
+        "Tamil Nadu adapted"
+      ]
+    },
+    {
+      "name": "Bamboo Garden Tool Set",
+      "price": 1200,
+      "originalPrice": 1500,
+      "image": "/placeholder.svg",
+      "category": "Tools",
+      "rating": 4.6,
+      "reviews": 89,
+      "inStock": true,
+      "featured": false,
+      "organic": false,
+      "description": "Sustainable bamboo handles with durable steel heads. Perfect for organic gardening.",
+      "features": [
+        "Eco-friendly",
+        "Ergonomic design",
+        "Rust resistant",
+        "Includes 5 tools"
+      ]
+    },
+    {
+      "name": "Vermicompost Premium Grade",
+      "price": 320,
+      "originalPrice": 400,
+      "image": "/placeholder.svg",
+      "category": "Fertilizers",
+      "rating": 4.9,
+      "reviews": 267,
+      "inStock": true,
+      "featured": true,
+      "organic": true,
+      "description": "Pure earthworm castings rich in nutrients, perfect for all plants and vegetables.",
+      "features": [
+        "100% organic",
+        "Nutrient rich",
+        "pH balanced",
+        "5kg pack"
+      ]
+    },
+    {
+      "name": "Neem Oil Natural Pesticide",
+      "price": 280,
+      "originalPrice": 350,
+      "image": "/placeholder.svg",
+      "category": "Pest Control",
+      "rating": 4.7,
+      "reviews": 156,
+      "inStock": true,
+      "featured": false,
+      "organic": true,
+      "description": "Cold-pressed neem oil for natural pest and disease control without harmful chemicals.",
+      "features": [
+        "Chemical-free",
+        "Multi-purpose",
+        "Biodegradable",
+        "500ml bottle"
+      ]
+    },
+    {
+      "name": "Permaculture Design Manual",
+      "price": 850,
+      "originalPrice": 1000,
+      "image": "/placeholder.svg",
+      "category": "Books",
+      "rating": 4.9,
+      "reviews": 78,
+      "inStock": true,
+      "featured": false,
+      "organic": false,
+      "description": "Comprehensive guide to permaculture principles with local case studies from India.",
+      "features": [
+        "350 pages",
+        "Color illustrations",
+        "Local examples",
+        "Bilingual content"
+      ]
+    },
+    {
+      "name": "Beginner's Organic Garden Kit",
+      "price": 1800,
+      "originalPrice": 2200,
+      "image": "/placeholder.svg",
+      "category": "Kits",
+      "rating": 4.8,
+      "reviews": 95,
+      "inStock": true,
+      "featured": true,
+      "organic": true,
+      "description": "Complete starter kit with seeds, tools, fertilizer, and instruction manual.",
+      "features": [
+        "Everything included",
+        "Beginner friendly",
+        "Organic certified",
+        "Step-by-step guide"
+      ]
+    },
+    {
+      "name": "Companion Planting Seed Mix",
+      "price": 380,
+      "originalPrice": 450,
+      "image": "/placeholder.svg",
+      "category": "Seeds",
+      "rating": 4.5,
+      "reviews": 142,
+      "inStock": false,
+      "featured": false,
+      "organic": true,
+      "description": "Carefully selected seed varieties that grow well together and support each other.",
+      "features": [
+        "Companion plants",
+        "Pest deterrent",
+        "Nitrogen fixing",
+        "Easy to grow"
+      ]
+    },
+    {
+      "name": "Bio-Enzyme Cleaning Concentrate",
+      "price": 225,
+      "originalPrice": 275,
+      "image": "/placeholder.svg",
+      "category": "Pest Control",
+      "rating": 4.4,
+      "reviews": 67,
+      "inStock": true,
+      "featured": false,
+      "organic": true,
+      "description": "Natural enzyme-based concentrate for soil health and plant disease prevention.",
+      "features": [
+        "Probiotic action",
+        "Soil health",
+        "Disease prevention",
+        "250ml concentrate"
+      ]
+    }
+  ],
+  "services": [
+    {
+      "title": "Garden Design Consultation",
+      "price": "₹2,500/session",
+      "description": "Personalized permaculture design consultation for your space.",
+      "features": [
+        "Site analysis",
+        "Custom design",
+        "Plant recommendations",
+        "Implementation plan"
+      ]
+    },
+    {
+      "title": "Organic Farm Setup",
+      "price": "₹15,000+",
+      "description": "Complete organic farm setup with training and ongoing support.",
+      "features": [
+        "Soil preparation",
+        "Infrastructure setup",
+        "Training program",
+        "6-month support"
+      ]
+    },
+    {
+      "title": "Maintenance & Care Service",
+      "price": "₹1,200/month",
+      "description": "Monthly garden maintenance service with organic care practices.",
+      "features": [
+        "Regular visits",
+        "Organic treatments",
+        "Pruning & care",
+        "Progress monitoring"
+      ]
+    }
+  ]
+}
