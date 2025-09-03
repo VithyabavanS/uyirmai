@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Calendar, User, Tag } from 'lucide-react';
+import { Search, Calendar, User, Tag, Leaf, BookOpen, ArrowRight, Filter } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -33,9 +33,20 @@ const Blog = (props) => {
   const regularPosts = filteredPosts.filter(post => !post.featured);
 
   return (
-    <div className="min-h-screen bg-gradient-organic">
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center mb-16">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-x-48 -translate-y-48" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 translate-x-48 translate-y-48" />
+      <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+
+      <div className="container mx-auto px-4 py-20 relative z-10">
+        {/* Hero Section */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center px-4 py-2 bg-emerald-100 rounded-full mb-6 hero-fade-in">
+            <BookOpen size={16} className="mr-2 text-emerald-600" />
+            <span className="text-emerald-700 font-medium">Knowledge Hub</span>
+          </div>
+          
           <h1 data-tina-field="title" className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 hero-fade-in">
             {pageData.title}
           </h1>
@@ -45,70 +56,100 @@ const Blog = (props) => {
         </div>
 
         {/* Search and Filter */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-12">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
-            <Input 
-              placeholder={t('searchPlaceholder')}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-card"
-            />
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {categories.map(category => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category)}
-                  className="text-xs"
-                >
-                  {category === 'All' ? t('allCategories') : category}
-                </Button>
-            ))}
+        <div className="mb-12">
+          <div className="flex flex-col lg:flex-row gap-6 items-center">
+            {/* Search Bar */}
+            <div className="relative flex-1 max-w-2xl">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
+              <Input 
+                placeholder={t('searchPlaceholder')}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-12 pr-4 py-3 bg-white/80 backdrop-blur-sm border-gray-200 rounded-xl shadow-sm focus:shadow-md focus:border-emerald-300 transition-all duration-300"
+              />
+            </div>
+            
+            {/* Filter Section */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <Filter size={16} />
+                <span className="font-medium">Filter:</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {categories.map(category => (
+                    <Button
+                      key={category}
+                      variant={selectedCategory === category ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setSelectedCategory(category)}
+                      className={`text-xs px-4 py-2 rounded-full transition-all duration-300 ${
+                        selectedCategory === category 
+                          ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-md' 
+                          : 'bg-white/80 backdrop-blur-sm hover:bg-emerald-50 hover:border-emerald-200 text-gray-700'
+                      }`}
+                    >
+                      {category === 'All' ? t('allCategories') : category}
+                    </Button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Featured Post */}
         {featuredPost && selectedCategory === 'All' && (
           <Card 
-            className="mb-12 overflow-hidden shadow-nature border-0 hero-fade-in"
+            className="mb-16 overflow-hidden shadow-xl border-0 bg-white/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 hero-fade-in group"
             data-tina-field="featuredPost"
           >
             <div className="md:flex">
-              <div className="md:w-1/2 h-64 md:h-auto">
+              <div className="md:w-1/2 h-80 md:h-auto relative overflow-hidden">
                 <img 
                   src={featuredPost.image} 
                   alt={featuredPost.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   data-tina-field="image"
                 />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
-              <div className="md:w-1/2 p-8">
-                <div className="flex items-center gap-2 mb-4">
-                  <Badge className="bg-accent text-white">Featured</Badge>
-                  <Badge variant="outline" data-tina-field="category">{featuredPost.category}</Badge>
+              <div className="md:w-1/2 p-8 lg:p-12">
+                <div className="flex items-center gap-3 mb-6">
+                  <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-1 font-medium">
+                    ⭐ Featured
+                  </Badge>
+                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200" data-tina-field="category">
+                    {featuredPost.category}
+                  </Badge>
                 </div>
-                <CardTitle data-tina-field="title" className="text-2xl font-heading text-foreground mb-4 line-clamp-2">
+                
+                <CardTitle data-tina-field="title" className="text-2xl md:text-3xl font-heading text-foreground mb-4 line-clamp-2 group-hover:text-emerald-700 transition-colors duration-300">
                   {featuredPost.title}
                 </CardTitle>
-                <CardDescription data-tina-field="excerpt" className="text-muted-foreground mb-4 line-clamp-3">
+                <CardDescription data-tina-field="excerpt" className="text-muted-foreground mb-6 line-clamp-3 leading-relaxed text-base">
                   {featuredPost.excerpt}
                 </CardDescription>
-                <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-6">
-                  <div className="flex items-center space-x-1">
-                    <User size={16} />
-                    <span data-tina-field="author">{featuredPost.author}</span>
+                
+                <div className="flex items-center space-x-6 text-sm text-muted-foreground mb-8">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                      <User size={14} className="text-blue-600" />
+                    </div>
+                    <span data-tina-field="author" className="font-medium">{featuredPost.author}</span>
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <Calendar size={16} />
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                      <Calendar size={14} className="text-green-600" />
+                    </div>
                     <span data-tina-field="date">{featuredPost.date}</span>
                   </div>
-                  <span data-tina-field="readTime">{featuredPost.readTime}</span>
+                  <Badge variant="outline" className="text-xs">
+                    <span data-tina-field="readTime">{featuredPost.readTime}</span>
+                  </Badge>
                 </div>
-                <Button className="bg-gradient-nature">
+                
+                <Button className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105 group">
                   {t('readMore')}
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={16} />
                 </Button>
               </div>
             </div>
@@ -120,46 +161,61 @@ const Blog = (props) => {
           {regularPosts.map((post, index) => (
             <Card 
               key={index} 
-              className="card-hover shadow-organic border-0 overflow-hidden h-full hero-fade-in"
+              className="group bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl overflow-hidden h-full transition-all duration-500 hover:-translate-y-2 hover:scale-105 hero-fade-in relative"
               style={{animationDelay: `${index * 0.1}s`}}
               data-tina-field={`blogPosts.${index}`}
             >
-              <div className="h-48 bg-muted">
+              {/* Card background effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="h-48 bg-gradient-to-br from-emerald-100 to-green-100 relative overflow-hidden">
                 <img 
                   src={post.image} 
                   alt={post.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   data-tina-field="image"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Read time badge */}
+                <div className="absolute top-3 right-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-gray-700">
+                  <span data-tina-field="readTime">{post.readTime}</span>
+                </div>
               </div>
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="outline" className="text-xs">
+              
+              <CardHeader className="relative z-10">
+                <div className="flex items-center gap-2 mb-3">
+                  <Badge variant="outline" className="text-xs bg-emerald-50 text-emerald-700 border-emerald-200">
                     <Tag size={12} className="mr-1" />
                     <span data-tina-field="category">{post.category}</span>
                   </Badge>
-                  <span data-tina-field="readTime" className="text-xs text-muted-foreground">{post.readTime}</span>
                 </div>
-                <CardTitle data-tina-field="title" className="font-heading text-lg line-clamp-2">
+                <CardTitle data-tina-field="title" className="font-heading text-lg line-clamp-2 group-hover:text-emerald-700 transition-colors duration-300">
                   {post.title}
                 </CardTitle>
-                <CardDescription data-tina-field="excerpt" className="line-clamp-3">
+                <CardDescription data-tina-field="excerpt" className="line-clamp-3 leading-relaxed">
                   {post.excerpt}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
-                  <div className="flex items-center space-x-1">
-                    <User size={14} />
-                    <span data-tina-field="author">{post.author}</span>
+              
+              <CardContent className="relative z-10">
+                <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-6">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                      <User size={12} className="text-blue-600" />
+                    </div>
+                    <span data-tina-field="author" className="text-xs">{post.author}</span>
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <Calendar size={14} />
-                    <span data-tina-field="date">{post.date}</span>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                      <Calendar size={12} className="text-green-600" />
+                    </div>
+                    <span data-tina-field="date" className="text-xs">{post.date}</span>
                   </div>
                 </div>
-                <Button variant="outline" size="sm" className="w-full">
+                <Button variant="outline" size="sm" className="w-full group-hover:bg-emerald-50 group-hover:border-emerald-200 group-hover:text-emerald-700 transition-all duration-300">
                   {t('readMore')}
+                  <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </CardContent>
             </Card>
@@ -168,15 +224,20 @@ const Blog = (props) => {
 
         {/* No Results */}
         {filteredPosts.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              No articles found matching your search criteria.
+          <div className="text-center py-16">
+            <div className="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-6">
+              <Search className="text-gray-400" size={32} />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">No articles found</h3>
+            <p className="text-muted-foreground text-lg mb-6 max-w-md mx-auto">
+              No articles found matching your search criteria. Try adjusting your filters or search terms.
             </p>
             <Button 
               variant="outline" 
               onClick={() => {setSearchTerm(''); setSelectedCategory('All');}}
-              className="mt-4"
+              className="px-6 py-2 hover:bg-emerald-50 hover:border-emerald-200 transition-colors duration-300"
             >
+              <ArrowRight className="mr-2" size={16} />
               Clear Filters
             </Button>
           </div>
@@ -192,15 +253,30 @@ const BlogPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await client.queries.blog({
-        relativePath: `${language}.json`,
-      });
-      setProps(res);
+      try {
+        const res = await client.queries.blog({
+          relativePath: `${language}.json`,
+        });
+        setProps(res);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
     fetchData();
   }, [language]);
 
-  return props ? <Blog {...props} /> : <div>Loading...</div>;
+  if (!props) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-green-50">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 font-medium">Loading articles...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return <Blog {...props} />;
 }
 
 export default BlogPage;

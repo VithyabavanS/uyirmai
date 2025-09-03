@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Leaf, Users, BookOpen, ShoppingBag } from 'lucide-react';
+import { ArrowRight, Leaf, Users, BookOpen, ShoppingBag, Sparkles, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -53,7 +53,7 @@ const Home = (props) => {
   ];
 
   return (
-    <div className="space-y-0">
+    <div className="space-y-0 overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div 
@@ -91,9 +91,19 @@ const Home = (props) => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gradient-organic">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gradient-to-br from-emerald-50 via-white to-green-50 relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-x-36 -translate-y-36" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 translate-x-36 translate-y-36" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
+            {/* Section badge */}
+            <div className="inline-flex items-center px-4 py-2 bg-emerald-100 rounded-full mb-6">
+              <Leaf size={16} className="mr-2 text-emerald-600" />
+              <span className="text-emerald-700 font-medium">Our Core Values</span>
+            </div>
+            
             <h2 data-tina-field="featuresSection.title" className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
               {homeData.featuresSection.title}
             </h2>
@@ -106,18 +116,25 @@ const Home = (props) => {
             {features.map((feature, index) => (
               <Card 
                 key={index} 
-                className="card-hover bg-card border-0 shadow-organic text-center group"
+                className="group bg-white/70 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl text-center transition-all duration-500 hover:-translate-y-3 hover:scale-105 relative overflow-hidden"
                 data-tina-field={`features.${index}`}
               >
-                <CardHeader className="pb-4">
-                  <div className="w-16 h-16 mx-auto bg-gradient-nature rounded-full flex items-center justify-center mb-4 organic-float group-hover:scale-110 transition-smooth">
-                    <feature.icon size={24} className="text-primary-foreground" />
+                {/* Card background effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <CardHeader className="pb-4 relative z-10">
+                  <div className="relative">
+                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-emerald-500/25 transform group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
+                      <feature.icon size={24} className="text-white" />
+                    </div>
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 w-16 h-16 mx-auto bg-emerald-400 rounded-2xl blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
                   </div>
-                  <CardTitle data-tina-field="title" className="text-xl font-heading text-foreground">
+                  <CardTitle data-tina-field="title" className="text-xl font-heading text-foreground group-hover:text-emerald-700 transition-colors duration-300">
                     {feature.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="relative z-10">
                   <CardDescription data-tina-field="description" className="text-muted-foreground leading-relaxed">
                     {feature.description}
                   </CardDescription>
@@ -129,40 +146,55 @@ const Home = (props) => {
       </section>
 
       {/* Latest Updates Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-white relative">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
-              {t('latestUpdates')}
-            </h2>
-            <Button variant="outline" asChild>
-              <Link to="/blog">View All Posts</Link>
+            <div>
+              <div className="inline-flex items-center px-4 py-2 bg-gray-100 rounded-full mb-4">
+                <BookOpen size={16} className="mr-2 text-gray-600" />
+                <span className="text-gray-700 font-medium">Latest Insights</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+                {t('latestUpdates')}
+              </h2>
+            </div>
+            <Button variant="outline" className="hover:bg-emerald-50 hover:border-emerald-200 transition-colors duration-300" asChild>
+              <Link to="/blog">
+                View All Posts
+                <ArrowRight className="ml-2" size={16} />
+              </Link>
             </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {latestPosts.map((post, index) => (
-              <Card key={index} className="card-hover overflow-hidden">
-                <div className="h-48 bg-muted">
+              <Card key={index} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white">
+                <div className="h-48 bg-gradient-to-br from-emerald-100 to-green-100 overflow-hidden">
                   <img 
                     src={post.image} 
                     alt={post.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
+                
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg line-clamp-2">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                    <Calendar size={14} />
+                    <CardDescription className="text-sm text-muted-foreground">
+                      {post.date}
+                    </CardDescription>
+                  </div>
+                  <CardTitle className="font-heading text-lg line-clamp-2 group-hover:text-emerald-700 transition-colors duration-300">
                     {post.title}
                   </CardTitle>
-                  <CardDescription className="text-sm text-muted-foreground">
-                    {post.date}
-                  </CardDescription>
                 </CardHeader>
+                
                 <CardContent>
-                  <p className="text-muted-foreground line-clamp-3 mb-4">
+                  <p className="text-muted-foreground line-clamp-3 mb-4 leading-relaxed">
                     {post.excerpt}
                   </p>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="group-hover:bg-emerald-50 group-hover:border-emerald-200 transition-colors duration-300">
                     {t('readMore')}
                   </Button>
                 </CardContent>
@@ -173,27 +205,43 @@ const Home = (props) => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-nature text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 bg-gradient-to-br from-emerald-600 via-emerald-700 to-green-800 text-primary-foreground relative overflow-hidden">
+        {/* Background patterns */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-32 h-32 border border-white/20 rounded-full" />
+          <div className="absolute top-32 right-20 w-16 h-16 border border-white/20 rounded-full" />
+          <div className="absolute bottom-20 left-1/3 w-24 h-24 border border-white/20 rounded-full" />
+        </div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-white/20">
+            <Sparkles size={18} className="mr-2" />
+            <span className="font-medium">Join Our Growing Community</span>
+          </div>
+          
           <h2 data-tina-field="cta.title" className="text-3xl md:text-4xl font-heading font-bold mb-6">
             {homeData.cta.title}
           </h2>
-          <p data-tina-field="cta.subtitle" className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+          <p data-tina-field="cta.subtitle" className="text-lg mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed">
             {homeData.cta.subtitle}
           </p>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              variant="secondary"
-              className="px-8"
+              className="group bg-white text-emerald-700 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold shadow-2xl hover:shadow-white/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
               asChild
             >
-              <Link to="/get-involved">{t('getStarted')}</Link>
+              <Link to="/get-involved">
+                <span>{t('getStarted')}</span>
+                <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
+              </Link>
             </Button>
+            
             <Button 
               size="lg" 
               variant="outline" 
-              className="px-8 border-primary-foreground text-black hover:bg-primary-foreground hover:text-primary"
+              className="px-8 py-3 rounded-full border-2 border-white/30 text-black hover:bg-white hover:text-emerald-700 backdrop-blur-sm transition-all duration-300 hover:scale-105"
               asChild
             >
               <Link to="/products">Explore Products</Link>
@@ -211,15 +259,30 @@ const HomePage = () => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const res = await client.queries.home({
-        relativePath: `${language}.json`,
-      });
-      setProps(res);
+      try {
+        const res = await client.queries.home({
+          relativePath: `${language}.json`,
+        });
+        setProps(res);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
     fetchData();
   }, [language]);
 
-  return props ? <Home {...props} /> : <div>Loading...</div>;
+  if (!props) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-green-50">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 font-medium">Loading amazing content...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return <Home {...props} />;
 }
 
 export default HomePage;
