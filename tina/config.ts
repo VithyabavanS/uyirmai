@@ -76,6 +76,13 @@ export default defineConfig({
             label: "Features",
             name: "features",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Feature" }),
+              defaultItem: {
+                title: "New Feature",
+                description: "Feature description...",
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -190,6 +197,13 @@ export default defineConfig({
             label: "Core Values",
             name: "coreValues",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Core Value" }),
+              defaultItem: {
+                title: "New Core Value",
+                description: "Value description...",
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -236,6 +250,18 @@ export default defineConfig({
             label: "Projects",
             name: "projects",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Project" }),
+              defaultItem: {
+                title: "New Project",
+                description: "Project description...",
+                status: "ongoing",
+                location: "TBD",
+                participants: 0,
+                startDate: "TBD",
+                category: "General",
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -285,6 +311,17 @@ export default defineConfig({
             label: "Upcoming Events",
             name: "upcomingEvents",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Event" }),
+              defaultItem: {
+                title: "New Event",
+                date: "TBD",
+                time: "TBD",
+                location: "TBD",
+                type: "General",
+                spots: 0,
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -326,106 +363,75 @@ export default defineConfig({
         path: "content/resources",
         format: "json",
         ui: {
-          router: ({ document }) => {
-            return `/resources?lang=${document._sys.filename}`;
-          },
+          router: ({ document }) => `/resources?lang=${document._sys.filename}`,
         },
         fields: [
-          {
-            type: "string",
-            label: "Title",
-            name: "title",
-          },
-          {
-            type: "string",
-            label: "Subtitle",
-            name: "subtitle",
-          },
-          {
-            type: "string",
-            label: "Featured Resources Title",
-            name: "featuredResourcesTitle",
-          },
-          {
-            type: "string",
-            label: "All Resources Title",
-            name: "allResourcesTitle",
-          },
-          {
-            type: "string",
-            label: "Techniques Title",
-            name: "techniquesTitle",
-          },
+          { type: "string", label: "Title", name: "title" },
+          { type: "string", label: "Subtitle", name: "subtitle" },
+          { type: "string", label: "Featured Resources Title", name: "featuredResourcesTitle" },
+          { type: "string", label: "All Resources Title", name: "allResourcesTitle" },
+          { type: "string", label: "Techniques Title", name: "techniquesTitle" },
+
+          // Resources list
           {
             type: "object",
             label: "Resources",
             name: "resources",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Resource" }),
+              defaultItem: {
+                title: "New Resource",
+                description: "Resource description...",
+                type: "Document",
+                category: "General",
+                size: "N/A",
+                duration: "N/A",
+                downloads: 0,
+                views: 0,
+                featured: false,
+              },
+            },
             fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title",
+              { type: "string", label: "Title", name: "title" },
+              { type: "string", label: "Description", name: "description", ui: { component: "textarea" } },
+              { type: "string", label: "Type", name: "type", options: ["Document", "Video", "PDF"] },
+              { type: "string", label: "Category", name: "category" },
+              { type: "string", label: "Size", name: "size" },
+              { type: "string", label: "Duration", name: "duration" },
+              { type: "number", label: "Downloads", name: "downloads" },
+              { type: "number", label: "Views", name: "views" },
+              { type: "boolean", label: "Featured", name: "featured" },
+
+              // ✅ Direct PDF upload (changed from string to image type)
+              { 
+                type: "image", 
+                label: "PDF File", 
+                name: "pdfFile",
+                // Optional: Add file type restrictions
+                ui: {
+                  accept: ".pdf"
+                }
               },
-              {
-                type: "string",
-                label: "Description",
-                name: "description",
-              },
-              {
-                type: "string",
-                label: "Type",
-                name: "type",
-              },
-              {
-                type: "string",
-                label: "Category",
-                name: "category",
-              },
-              {
-                type: "string",
-                label: "Size",
-                name: "size",
-              },
-              {
-                type: "string",
-                label: "Duration",
-                name: "duration",
-              },
-              {
-                type: "number",
-                label: "Downloads",
-                name: "downloads",
-              },
-              {
-                type: "number",
-                label: "Views",
-                name: "views",
-              },
-              {
-                type: "boolean",
-                label: "Featured",
-                name: "featured",
-              },
+
+              // ✅ Video upload
+              { type: "image", label: "Video File", name: "videoFile" },
             ],
           },
+
+          // Techniques list
           {
             type: "object",
             label: "Techniques",
             name: "techniques",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Technique" }),
+              defaultItem: { title: "New Technique", items: ["Item 1", "Item 2"] },
+            },
             fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title",
-              },
-              {
-                type: "string",
-                label: "Items",
-                name: "items",
-                list: true,
-              },
+              { type: "string", label: "Title", name: "title" },
+              { type: "string", label: "Items", name: "items", list: true },
             ],
           },
         ],
@@ -458,9 +464,19 @@ export default defineConfig({
           },
           {
             type: "object",
-            label: "Opportunities",
-            name: "opportunities",
+            label: "Volunteer Opportunities",
+            name: "volunteerOpportunities",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Opportunity" }),
+              defaultItem: {
+                title: "New Opportunity",
+                description: "Description of the opportunity",
+                commitment: "Flexible",
+                type: "Ongoing",
+                benefits: ["Learn new skills"],
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -487,6 +503,10 @@ export default defineConfig({
                 label: "Benefits",
                 name: "benefits",
                 list: true,
+                ui: {
+                  component: "list",
+                  defaultItem: "New benefit",
+                },
               },
             ],
           },
@@ -500,6 +520,18 @@ export default defineConfig({
             label: "Courses",
             name: "courses",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Course" }),
+              defaultItem: {
+                title: "New Course",
+                duration: "4 weeks",
+                format: "Online",
+                level: "Beginner",
+                nextSession: "TBD",
+                price: "Free",
+                highlights: ["Interactive sessions"],
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -536,6 +568,10 @@ export default defineConfig({
                 label: "Highlights",
                 name: "highlights",
                 list: true,
+                ui: {
+                  component: "list",
+                  defaultItem: "New highlight",
+                },
               },
             ],
           },
@@ -549,6 +585,14 @@ export default defineConfig({
             label: "Steps",
             name: "steps",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: `Step ${item?.number || "?"}: ${item?.title || "New Step"}` }),
+              defaultItem: {
+                number: "1",
+                title: "New Step",
+                description: "Step description...",
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -579,142 +623,176 @@ export default defineConfig({
           },
         ],
       },
-      {
-        name: "products",
-        label: "Products Page",
-        path: "content/products",
-        format: "json",
-        ui: {
-          router: ({ document }) => {
-            return `/products?lang=${document._sys.filename}`;
+     {
+  name: "products",
+  label: "Products Page",
+  path: "content/products",
+  format: "json",
+  ui: {
+    router: ({ document }) => {
+      return `/products?lang=${document._sys.filename}`;
+    },
+  },
+  fields: [
+    {
+      type: "string",
+      label: "Title",
+      name: "title",
+    },
+    {
+      type: "string",
+      label: "Subtitle",
+      name: "subtitle",
+    },
+    {
+      type: "string",
+      label: "Featured Products Title",
+      name: "featuredProductsTitle",
+    },
+    {
+      type: "string",
+      label: "All Products Title",
+      name: "allProductsTitle",
+    },
+    {
+      type: "string",
+      label: "Services Title",
+      name: "servicesTitle",
+    },
+    {
+      type: "object",
+      label: "Products",
+      name: "products",
+      list: true,
+      ui: {
+        itemProps: (item) => ({ label: item?.name || "New Product" }),
+        defaultItem: {
+          name: "New Product",
+          price: 0,
+          originalPrice: 0,
+          image: "",
+          category: "General",
+          rating: 5,
+          reviews: 0,
+          inStock: true,
+          featured: false,
+          organic: false,
+          description: "Product description...",
+          features: ["Feature 1"],
+        },
+      },
+      fields: [
+        {
+          type: "string",
+          label: "Name",
+          name: "name",
+        },
+        {
+          type: "number",
+          label: "Price",
+          name: "price",
+        },
+        {
+          type: "number",
+          label: "Original Price",
+          name: "originalPrice",
+        },
+        {
+          type: "image",
+          label: "Image",
+          name: "image",
+        },
+        {
+          type: "string",
+          label: "Category",
+          name: "category",
+        },
+        {
+          type: "number",
+          label: "Rating",
+          name: "rating",
+        },
+        {
+          type: "number",
+          label: "Reviews",
+          name: "reviews",
+        },
+        {
+          type: "boolean",
+          label: "In Stock",
+          name: "inStock",
+        },
+        {
+          type: "boolean",
+          label: "Featured",
+          name: "featured",
+        },
+        {
+          type: "boolean",
+          label: "Organic",
+          name: "organic",
+        },
+        {
+          type: "string",
+          label: "Description",
+          name: "description",
+        },
+        {
+          type: "string",
+          label: "Features",
+          name: "features",
+          list: true,
+          ui: {
+            component: "list",
+            defaultItem: "New feature",
           },
         },
-        fields: [
-          {
-            type: "string",
-            label: "Title",
-            name: "title",
-          },
-          {
-            type: "string",
-            label: "Subtitle",
-            name: "subtitle",
-          },
-          {
-            type: "string",
-            label: "Featured Products Title",
-            name: "featuredProductsTitle",
-          },
-          {
-            type: "string",
-            label: "All Products Title",
-            name: "allProductsTitle",
-          },
-          {
-            type: "string",
-            label: "Services Title",
-            name: "servicesTitle",
-          },
-          {
-            type: "object",
-            label: "Products",
-            name: "products",
-            list: true,
-            fields: [
-              {
-                type: "string",
-                label: "Name",
-                name: "name",
-              },
-              {
-                type: "number",
-                label: "Price",
-                name: "price",
-              },
-              {
-                type: "number",
-                label: "Original Price",
-                name: "originalPrice",
-              },
-              {
-                type: "image",
-                label: "Image",
-                name: "image",
-              },
-              {
-                type: "string",
-                label: "Category",
-                name: "category",
-              },
-              {
-                type: "number",
-                label: "Rating",
-                name: "rating",
-              },
-              {
-                type: "number",
-                label: "Reviews",
-                name: "reviews",
-              },
-              {
-                type: "boolean",
-                label: "In Stock",
-                name: "inStock",
-              },
-              {
-                type: "boolean",
-                label: "Featured",
-                name: "featured",
-              },
-              {
-                type: "boolean",
-                label: "Organic",
-                name: "organic",
-              },
-              {
-                type: "string",
-                label: "Description",
-                name: "description",
-              },
-              {
-                type: "string",
-                label: "Features",
-                name: "features",
-                list: true,
-              },
-            ],
-          },
-          {
-            type: "object",
-            label: "Services",
-            name: "services",
-            list: true,
-            fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title",
-              },
-              {
-                type: "string",
-                label: "Price",
-                name: "price",
-              },
-              {
-                type: "string",
-                label: "Description",
-                name: "description",
-              },
-              {
-                type: "string",
-                label: "Features",
-                name: "features",
-                list: true,
-              },
-            ],
-          },
-        ],
+      ],
+    },
+    {
+      type: "object",
+      label: "Services",
+      name: "services",
+      list: true,
+      ui: {
+        itemProps: (item) => ({ label: item?.title || "New Service" }),
+        defaultItem: {
+          title: "New Service",
+          price: "Contact for pricing",
+          description: "Service description...",
+          features: ["Feature 1"],
+        },
       },
+      fields: [
+        {
+          type: "string",
+          label: "Title",
+          name: "title",
+        },
+        {
+          type: "string",
+          label: "Price",
+          name: "price",
+        },
+        {
+          type: "string",
+          label: "Description",
+          name: "description",
+        },
+        {
+          type: "string",
+          label: "Features",
+          name: "features",
+          list: true,
+          ui: {
+            component: "list",
+            defaultItem: "New feature",
+          },
+        },
+      ],
+    },
+  ],
+},
       {
         name: "blog",
         label: "Blog Page",
@@ -741,6 +819,20 @@ export default defineConfig({
             label: "Blog Posts",
             name: "blogPosts",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Blog Post" }),
+              defaultItem: {
+                title: "New Blog Post",
+                excerpt: "Enter blog post excerpt...",
+                author: "Author Name",
+                date: new Date().toLocaleDateString(),
+                category: "General",
+                readTime: "5 min read",
+                featured: false,
+                fullContent: "",
+                videoUrl: ""
+              },
+            },
             fields: [
               {
                 type: "string",
@@ -784,6 +876,18 @@ export default defineConfig({
                 type: "boolean",
                 label: "Featured",
                 name: "featured",
+              },
+              {
+                type: "rich-text",
+                label: "Full Content",
+                name: "fullContent",
+                description: "Complete article content (will be displayed on individual post pages)",
+              },
+              {
+                type: "string",
+                label: "Video URL",
+                name: "videoUrl",
+                description: "YouTube, Vimeo, or direct video URL (optional)",
               },
             ],
           },

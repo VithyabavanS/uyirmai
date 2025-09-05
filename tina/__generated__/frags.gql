@@ -92,6 +92,8 @@ fragment ResourcesParts on Resources {
     downloads
     views
     featured
+    pdfFile
+    videoFile
   }
   techniques {
     __typename
@@ -105,7 +107,7 @@ fragment Get_involvedParts on Get_involved {
   title
   subtitle
   volunteerOpportunitiesTitle
-  opportunities {
+  volunteerOpportunities {
     __typename
     title
     description
@@ -180,5 +182,7 @@ fragment BlogParts on Blog {
     readTime
     image
     featured
+    fullContent
+    videoUrl
   }
 }

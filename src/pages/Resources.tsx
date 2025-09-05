@@ -34,6 +34,40 @@ const Resources = (props) => {
     ? pageData.resources 
     : pageData.resources.filter(resource => resource.category === selectedCategory);
 
+  // ✅ Button logic with original design styling
+  const renderResourceButton = (resource, isFeatured = false) => {
+    const buttonClass = isFeatured 
+      ? "w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105"
+      : "w-full group-hover:bg-emerald-50 group-hover:border-emerald-200 group-hover:text-emerald-700 transition-all duration-300";
+
+    if (resource.type.includes("Video") && resource.videoFile) {
+      return (
+        <a href={resource.videoFile} target="_blank" rel="noopener noreferrer" className="block">
+          <Button className={buttonClass} variant={isFeatured ? "default" : "outline"} size={isFeatured ? "default" : "sm"}>
+            <Play size={isFeatured ? 16 : 14} className="mr-2" />
+            {t("watchVideo")}
+          </Button>
+        </a>
+      );
+    }
+    if (resource.pdfFile) {
+      return (
+        <a href={resource.pdfFile} target="_blank" rel="noopener noreferrer" className="block">
+          <Button className={buttonClass} variant={isFeatured ? "default" : "outline"} size={isFeatured ? "default" : "sm"}>
+            <Download size={isFeatured ? 16 : 14} className="mr-2" />
+            {t("downloadPdf")}
+          </Button>
+        </a>
+      );
+    }
+    return (
+      <Button disabled className={`w-full opacity-60 ${isFeatured ? '' : 'text-sm'}`} variant={isFeatured ? "default" : "outline"} size={isFeatured ? "default" : "sm"}>
+        <Download size={isFeatured ? 16 : 14} className="mr-2" />
+        {t("NotAvailable")}
+      </Button>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 relative overflow-hidden">
       {/* Background decorations */}
@@ -136,10 +170,7 @@ const Resources = (props) => {
                       {resource.views && <span data-tina-field="views">{resource.views} views</span>}
                     </div>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105">
-                    <Download size={16} className="mr-2" />
-                    {resource.type === 'Video' || resource.type === 'Video Series' ? t('watchVideo') : t('downloadPdf')}
-                  </Button>
+                  {renderResourceButton(resource, true)}
                 </CardContent>
               </Card>
             )})
@@ -201,10 +232,7 @@ const Resources = (props) => {
                       {resource.views && <span data-tina-field="views">{resource.views} views</span>}
                     </span>
                   </div>
-                  <Button variant="outline" size="sm" className="w-full group-hover:bg-emerald-50 group-hover:border-emerald-200 group-hover:text-emerald-700 transition-all duration-300">
-                    <Download size={14} className="mr-2" />
-                    {resource.type.includes('Video') ? t('watchVideo') : t('downloadPdf')}
-                  </Button>
+                  {renderResourceButton(resource, false)}
                 </CardContent>
               </Card>
             )})

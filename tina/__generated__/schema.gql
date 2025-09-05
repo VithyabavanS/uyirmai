@@ -338,6 +338,8 @@ type ResourcesResources {
   downloads: Float
   views: Float
   featured: Boolean
+  pdfFile: String
+  videoFile: String
 }
 
 type ResourcesTechniques {
@@ -363,6 +365,13 @@ input BooleanFilter {
   exists: Boolean
 }
 
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
 input ResourcesResourcesFilter {
   title: StringFilter
   description: StringFilter
@@ -373,6 +382,8 @@ input ResourcesResourcesFilter {
   downloads: NumberFilter
   views: NumberFilter
   featured: BooleanFilter
+  pdfFile: ImageFilter
+  videoFile: ImageFilter
 }
 
 input ResourcesTechniquesFilter {
@@ -401,7 +412,7 @@ type ResourcesConnection implements Connection {
   edges: [ResourcesConnectionEdges]
 }
 
-type Get_involvedOpportunities {
+type Get_involvedVolunteerOpportunities {
   title: String
   description: String
   commitment: String
@@ -429,7 +440,7 @@ type Get_involved implements Node & Document {
   title: String
   subtitle: String
   volunteerOpportunitiesTitle: String
-  opportunities: [Get_involvedOpportunities]
+  volunteerOpportunities: [Get_involvedVolunteerOpportunities]
   coursesTitle: String
   courses: [Get_involvedCourses]
   howToGetStartedTitle: String
@@ -441,7 +452,7 @@ type Get_involved implements Node & Document {
   _values: JSON!
 }
 
-input Get_involvedOpportunitiesFilter {
+input Get_involvedVolunteerOpportunitiesFilter {
   title: StringFilter
   description: StringFilter
   commitment: StringFilter
@@ -469,7 +480,7 @@ input Get_involvedFilter {
   title: StringFilter
   subtitle: StringFilter
   volunteerOpportunitiesTitle: StringFilter
-  opportunities: Get_involvedOpportunitiesFilter
+  volunteerOpportunities: Get_involvedVolunteerOpportunitiesFilter
   coursesTitle: StringFilter
   courses: Get_involvedCoursesFilter
   howToGetStartedTitle: StringFilter
@@ -524,13 +535,6 @@ type Products implements Node & Document {
   _values: JSON!
 }
 
-input ImageFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
 input ProductsProductsFilter {
   name: StringFilter
   price: NumberFilter
@@ -583,6 +587,8 @@ type BlogBlogPosts {
   readTime: String
   image: String
   featured: Boolean
+  fullContent: JSON
+  videoUrl: String
 }
 
 type Blog implements Node & Document {
@@ -594,6 +600,12 @@ type Blog implements Node & Document {
   _values: JSON!
 }
 
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
 input BlogBlogPostsFilter {
   title: StringFilter
   excerpt: StringFilter
@@ -603,6 +615,8 @@ input BlogBlogPostsFilter {
   readTime: StringFilter
   image: ImageFilter
   featured: BooleanFilter
+  fullContent: RichTextFilter
+  videoUrl: StringFilter
 }
 
 input BlogFilter {
@@ -757,6 +771,8 @@ input ResourcesResourcesMutation {
   downloads: Float
   views: Float
   featured: Boolean
+  pdfFile: String
+  videoFile: String
 }
 
 input ResourcesTechniquesMutation {
@@ -774,7 +790,7 @@ input ResourcesMutation {
   techniques: [ResourcesTechniquesMutation]
 }
 
-input Get_involvedOpportunitiesMutation {
+input Get_involvedVolunteerOpportunitiesMutation {
   title: String
   description: String
   commitment: String
@@ -802,7 +818,7 @@ input Get_involvedMutation {
   title: String
   subtitle: String
   volunteerOpportunitiesTitle: String
-  opportunities: [Get_involvedOpportunitiesMutation]
+  volunteerOpportunities: [Get_involvedVolunteerOpportunitiesMutation]
   coursesTitle: String
   courses: [Get_involvedCoursesMutation]
   howToGetStartedTitle: String
@@ -852,6 +868,8 @@ input BlogBlogPostsMutation {
   readTime: String
   image: String
   featured: Boolean
+  fullContent: JSON
+  videoUrl: String
 }
 
 input BlogMutation {

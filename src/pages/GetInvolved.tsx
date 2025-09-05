@@ -18,7 +18,7 @@ const GetInvolved = (props) => {
     data: props.data,
   });
 
-  const pageData = data.get_involved;
+  const pageData = data?.get_involved;
 
   const opportunityIcons = {
     "Community Volunteer": Users,
@@ -26,6 +26,18 @@ const GetInvolved = (props) => {
     "Mentorship Program": Heart,
     "Professional Services": Briefcase,
   };
+
+  // Add loading state if data is not available
+  if (!pageData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-green-50">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 font-medium">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 relative overflow-hidden">
@@ -66,14 +78,14 @@ const GetInvolved = (props) => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pageData.opportunities.map((opportunity, index) => {
+            {pageData.volunteerOpportunities?.map((opportunity, index) => {
               const Icon = opportunityIcons[opportunity.title];
               return (
               <Card 
                 key={index} 
                 className="group bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:scale-105 relative overflow-hidden hero-fade-in"
                 style={{animationDelay: `${index * 0.2}s`}}
-                data-tina-field={`opportunities.${index}`}
+                data-tina-field={`volunteerOpportunities.${index}`}
               >
                 {/* Card background effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -87,22 +99,22 @@ const GetInvolved = (props) => {
                       <div className="absolute inset-0 w-16 h-16 bg-purple-400 rounded-2xl blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
                     </div>
                     <div className="text-right">
-                      <Badge data-tina-field="type" variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
+                      <Badge data-tina-field={`volunteerOpportunities.${index}.type`} variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
                         {opportunity.type}
                       </Badge>
                     </div>
                   </div>
-                  <CardTitle data-tina-field="title" className="font-heading text-xl text-foreground group-hover:text-purple-700 transition-colors duration-300">
+                  <CardTitle data-tina-field={`volunteerOpportunities.${index}.title`} className="font-heading text-xl text-foreground group-hover:text-purple-700 transition-colors duration-300">
                     {opportunity.title}
                   </CardTitle>
-                  <CardDescription data-tina-field="description" className="text-muted-foreground leading-relaxed">
+                  <CardDescription data-tina-field={`volunteerOpportunities.${index}.description`} className="text-muted-foreground leading-relaxed">
                     {opportunity.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4 relative z-10">
                   <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="font-medium text-foreground">Time Commitment: </span>
-                    <span data-tina-field="commitment" className="text-emerald-600 font-medium">{opportunity.commitment}</span>
+                    <span data-tina-field={`volunteerOpportunities.${index}.commitment`} className="text-emerald-600 font-medium">{opportunity.commitment}</span>
                   </div>
                   <div>
                     <h4 className="font-medium text-foreground mb-3 flex items-center">
@@ -110,8 +122,8 @@ const GetInvolved = (props) => {
                       What you'll gain:
                     </h4>
                     <ul className="space-y-2">
-                      {opportunity.benefits.map((benefit, i) => (
-                        <li key={i} className="text-sm text-muted-foreground flex items-start" data-tina-field={`benefits.${i}`}>
+                      {opportunity.benefits?.map((benefit, i) => (
+                        <li key={i} className="text-sm text-muted-foreground flex items-start" data-tina-field={`volunteerOpportunities.${index}.benefits.${i}`}>
                           <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 mr-3 flex-shrink-0" />
                           {benefit}
                         </li>
@@ -144,7 +156,7 @@ const GetInvolved = (props) => {
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {pageData.courses.map((course, index) => (
+            {pageData.courses?.map((course, index) => (
               <Card 
                 key={index} 
                 className="group bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 relative overflow-hidden hero-fade-in"
@@ -159,27 +171,27 @@ const GetInvolved = (props) => {
                 
                 <CardHeader className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
-                    <Badge data-tina-field="level" className="bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 border-0">
+                    <Badge data-tina-field={`courses.${index}.level`} className="bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 border-0">
                       {course.level}
                     </Badge>
-                    <span data-tina-field="price" className="text-xl font-bold text-emerald-600">{course.price}</span>
+                    <span data-tina-field={`courses.${index}.price`} className="text-xl font-bold text-emerald-600">{course.price}</span>
                   </div>
-                  <CardTitle data-tina-field="title" className="font-heading text-xl text-foreground group-hover:text-blue-700 transition-colors duration-300">
+                  <CardTitle data-tina-field={`courses.${index}.title`} className="font-heading text-xl text-foreground group-hover:text-blue-700 transition-colors duration-300">
                     {course.title}
                   </CardTitle>
                   <CardDescription className="space-y-2">
                     <div className="flex items-center space-x-4 text-sm">
                       <div className="flex items-center space-x-1">
                         <Calendar size={14} className="text-orange-600" />
-                        <span data-tina-field="duration">{course.duration}</span>
+                        <span data-tina-field={`courses.${index}.duration`}>{course.duration}</span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-                        <span data-tina-field="format">{course.format}</span>
+                        <span data-tina-field={`courses.${index}.format`}>{course.format}</span>
                       </div>
                     </div>
                     <div className="p-2 bg-emerald-50 rounded-lg">
-                      <div data-tina-field="nextSession" className="text-xs font-medium text-emerald-700">
+                      <div data-tina-field={`courses.${index}.nextSession`} className="text-xs font-medium text-emerald-700">
                         Next session: {course.nextSession}
                       </div>
                     </div>
@@ -192,8 +204,8 @@ const GetInvolved = (props) => {
                       Course Highlights:
                     </h4>
                     <ul className="space-y-2">
-                      {course.highlights.map((highlight, i) => (
-                        <li key={i} className="text-sm text-muted-foreground flex items-start" data-tina-field={`highlights.${i}`}>
+                      {course.highlights?.map((highlight, i) => (
+                        <li key={i} className="text-sm text-muted-foreground flex items-start" data-tina-field={`courses.${index}.highlights.${i}`}>
                           <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0" />
                           {highlight}
                         </li>
@@ -226,7 +238,7 @@ const GetInvolved = (props) => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {pageData.steps.map((step, index) => (
+            {pageData.steps?.map((step, index) => (
               <div 
                 key={index} 
                 className="text-center hero-fade-in group"
@@ -240,7 +252,7 @@ const GetInvolved = (props) => {
                   <div className="absolute inset-0 w-20 h-20 mx-auto bg-emerald-400 rounded-2xl blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
                   
                   {/* Connection line (except for last item) */}
-                  {index < pageData.steps.length - 1 && (
+                  {index < (pageData.steps?.length || 0) - 1 && (
                     <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-emerald-300 to-transparent" />
                   )}
                 </div>

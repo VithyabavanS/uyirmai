@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Calendar, User, Tag, Leaf, BookOpen, ArrowRight, Filter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,6 +8,10 @@ import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTina } from 'tinacms/dist/react';
 import client from '../../tina/__generated__/client';
+
+const generateSlug = (title) => {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+};
 
 const Blog = (props) => {
   const { t } = useLanguage();
@@ -30,6 +35,7 @@ const Blog = (props) => {
   });
 
   const featuredPost = pageData.blogPosts.find(post => post.featured);
+  const featuredIndex = pageData.blogPosts.findIndex(p => p.featured);
   const regularPosts = filteredPosts.filter(post => !post.featured);
 
   return (
@@ -100,7 +106,7 @@ const Blog = (props) => {
         {featuredPost && selectedCategory === 'All' && (
           <Card 
             className="mb-16 overflow-hidden shadow-xl border-0 bg-white/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 hero-fade-in group"
-            data-tina-field="featuredPost"
+            data-tina-field={`blogPosts.${featuredIndex}`}
           >
             <div className="md:flex">
               <div className="md:w-1/2 h-80 md:h-auto relative overflow-hidden">
@@ -108,7 +114,7 @@ const Blog = (props) => {
                   src={featuredPost.image} 
                   alt={featuredPost.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  data-tina-field="image"
+                  data-tina-field={`blogPosts.${featuredIndex}.image`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
@@ -117,15 +123,15 @@ const Blog = (props) => {
                   <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-1 font-medium">
                     ⭐ Featured
                   </Badge>
-                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200" data-tina-field="category">
+                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200" data-tina-field={`blogPosts.${featuredIndex}.category`}>
                     {featuredPost.category}
                   </Badge>
                 </div>
                 
-                <CardTitle data-tina-field="title" className="text-2xl md:text-3xl font-heading text-foreground mb-4 line-clamp-2 group-hover:text-emerald-700 transition-colors duration-300">
+                <CardTitle data-tina-field={`blogPosts.${featuredIndex}.title`} className="text-2xl md:text-3xl font-heading text-foreground mb-4 line-clamp-2 group-hover:text-emerald-700 transition-colors duration-300">
                   {featuredPost.title}
                 </CardTitle>
-                <CardDescription data-tina-field="excerpt" className="text-muted-foreground mb-6 line-clamp-3 leading-relaxed text-base">
+                <CardDescription data-tina-field={`blogPosts.${featuredIndex}.excerpt`} className="text-muted-foreground mb-6 line-clamp-3 leading-relaxed text-base">
                   {featuredPost.excerpt}
                 </CardDescription>
                 
@@ -134,36 +140,40 @@ const Blog = (props) => {
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                       <User size={14} className="text-blue-600" />
                     </div>
-                    <span data-tina-field="author" className="font-medium">{featuredPost.author}</span>
+                    <span data-tina-field={`blogPosts.${featuredIndex}.author`} className="font-medium">{featuredPost.author}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                       <Calendar size={14} className="text-green-600" />
                     </div>
-                    <span data-tina-field="date">{featuredPost.date}</span>
+                    <span data-tina-field={`blogPosts.${featuredIndex}.date`}>{featuredPost.date}</span>
                   </div>
                   <Badge variant="outline" className="text-xs">
-                    <span data-tina-field="readTime">{featuredPost.readTime}</span>
+                    <span data-tina-field={`blogPosts.${featuredIndex}.readTime`}>{featuredPost.readTime}</span>
                   </Badge>
                 </div>
                 
-                <Button className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105 group">
-                  {t('readMore')}
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={16} />
-                </Button>
+                <Link to={`/blog/post/${generateSlug(featuredPost.title)}`}>
+                  <Button className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105 group">
+                    {t('readMore')}
+                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={16} />
+                  </Button>
+                </Link>
               </div>
             </div>
           </Card>
         )}
 
         {/* Regular Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {regularPosts.map((post, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-tina-field="blogPosts">
+          {regularPosts.map((post, index) => {
+            const originalIndex = pageData.blogPosts.findIndex(p => p === post);
+            return (
             <Card 
               key={index} 
               className="group bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl overflow-hidden h-full transition-all duration-500 hover:-translate-y-2 hover:scale-105 hero-fade-in relative"
               style={{animationDelay: `${index * 0.1}s`}}
-              data-tina-field={`blogPosts.${index}`}
+              data-tina-field={`blogPosts.${originalIndex}`}
             >
               {/* Card background effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -173,13 +183,13 @@ const Blog = (props) => {
                   src={post.image} 
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  data-tina-field="image"
+                  data-tina-field={`blogPosts.${originalIndex}.image`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 {/* Read time badge */}
                 <div className="absolute top-3 right-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-gray-700">
-                  <span data-tina-field="readTime">{post.readTime}</span>
+                  <span data-tina-field={`blogPosts.${originalIndex}.readTime`}>{post.readTime}</span>
                 </div>
               </div>
               
@@ -187,13 +197,13 @@ const Blog = (props) => {
                 <div className="flex items-center gap-2 mb-3">
                   <Badge variant="outline" className="text-xs bg-emerald-50 text-emerald-700 border-emerald-200">
                     <Tag size={12} className="mr-1" />
-                    <span data-tina-field="category">{post.category}</span>
+                    <span data-tina-field={`blogPosts.${originalIndex}.category`}>{post.category}</span>
                   </Badge>
                 </div>
-                <CardTitle data-tina-field="title" className="font-heading text-lg line-clamp-2 group-hover:text-emerald-700 transition-colors duration-300">
+                <CardTitle data-tina-field={`blogPosts.${originalIndex}.title`} className="font-heading text-lg line-clamp-2 group-hover:text-emerald-700 transition-colors duration-300">
                   {post.title}
                 </CardTitle>
-                <CardDescription data-tina-field="excerpt" className="line-clamp-3 leading-relaxed">
+                <CardDescription data-tina-field={`blogPosts.${originalIndex}.excerpt`} className="line-clamp-3 leading-relaxed">
                   {post.excerpt}
                 </CardDescription>
               </CardHeader>
@@ -204,22 +214,25 @@ const Blog = (props) => {
                     <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
                       <User size={12} className="text-blue-600" />
                     </div>
-                    <span data-tina-field="author" className="text-xs">{post.author}</span>
+                    <span data-tina-field={`blogPosts.${originalIndex}.author`} className="text-xs">{post.author}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
                       <Calendar size={12} className="text-green-600" />
                     </div>
-                    <span data-tina-field="date" className="text-xs">{post.date}</span>
+                    <span data-tina-field={`blogPosts.${originalIndex}.date`} className="text-xs">{post.date}</span>
                   </div>
                 </div>
-                <Button variant="outline" size="sm" className="w-full group-hover:bg-emerald-50 group-hover:border-emerald-200 group-hover:text-emerald-700 transition-all duration-300">
-                  {t('readMore')}
-                  <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
+                <Link to={`/blog/post/${generateSlug(post.title)}`} className="block">
+                  <Button variant="outline" size="sm" className="w-full group-hover:bg-emerald-50 group-hover:border-emerald-200 group-hover:text-emerald-700 transition-all duration-300">
+                    {t('readMore')}
+                    <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
-          ))}
+          );
+          })}
         </div>
 
         {/* No Results */}

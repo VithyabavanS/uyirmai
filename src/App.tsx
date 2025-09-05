@@ -14,7 +14,7 @@ import Resources from "@/pages/Resources";
 import GetInvolved from "@/pages/GetInvolved";
 import Products from "@/pages/Products";
 import NotFound from "./pages/NotFound";
-import BlogPostPage from "./pages/blog/[filename].tsx";
+import BlogPostPage from "./pages/BlogPostPage";
 import React from "react";
 
 const queryClient = new QueryClient();
@@ -30,7 +30,7 @@ const App = () => {
       <Route path="/philosophy" element={<Philosophy />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/blog" element={<Blog />} />
-      <Route path="/blog/:filename" element={<BlogPostPage />} />
+      <Route path="/blog/post/:slug" element={<BlogPostPage />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/get-involved" element={<GetInvolved />} />
       <Route path="/products" element={<Products />} />

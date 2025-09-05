@@ -525,6 +525,8 @@ export type ResourcesResources = {
   downloads?: Maybe<Scalars['Float']['output']>;
   views?: Maybe<Scalars['Float']['output']>;
   featured?: Maybe<Scalars['Boolean']['output']>;
+  pdfFile?: Maybe<Scalars['String']['output']>;
+  videoFile?: Maybe<Scalars['String']['output']>;
 };
 
 export type ResourcesTechniques = {
@@ -552,6 +554,13 @@ export type BooleanFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type ResourcesResourcesFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
@@ -562,6 +571,8 @@ export type ResourcesResourcesFilter = {
   downloads?: InputMaybe<NumberFilter>;
   views?: InputMaybe<NumberFilter>;
   featured?: InputMaybe<BooleanFilter>;
+  pdfFile?: InputMaybe<ImageFilter>;
+  videoFile?: InputMaybe<ImageFilter>;
 };
 
 export type ResourcesTechniquesFilter = {
@@ -592,8 +603,8 @@ export type ResourcesConnection = Connection & {
   edges?: Maybe<Array<Maybe<ResourcesConnectionEdges>>>;
 };
 
-export type Get_InvolvedOpportunities = {
-  __typename?: 'Get_involvedOpportunities';
+export type Get_InvolvedVolunteerOpportunities = {
+  __typename?: 'Get_involvedVolunteerOpportunities';
   title?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   commitment?: Maybe<Scalars['String']['output']>;
@@ -624,7 +635,7 @@ export type Get_Involved = Node & Document & {
   title?: Maybe<Scalars['String']['output']>;
   subtitle?: Maybe<Scalars['String']['output']>;
   volunteerOpportunitiesTitle?: Maybe<Scalars['String']['output']>;
-  opportunities?: Maybe<Array<Maybe<Get_InvolvedOpportunities>>>;
+  volunteerOpportunities?: Maybe<Array<Maybe<Get_InvolvedVolunteerOpportunities>>>;
   coursesTitle?: Maybe<Scalars['String']['output']>;
   courses?: Maybe<Array<Maybe<Get_InvolvedCourses>>>;
   howToGetStartedTitle?: Maybe<Scalars['String']['output']>;
@@ -636,7 +647,7 @@ export type Get_Involved = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Get_InvolvedOpportunitiesFilter = {
+export type Get_InvolvedVolunteerOpportunitiesFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   commitment?: InputMaybe<StringFilter>;
@@ -664,7 +675,7 @@ export type Get_InvolvedFilter = {
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
   volunteerOpportunitiesTitle?: InputMaybe<StringFilter>;
-  opportunities?: InputMaybe<Get_InvolvedOpportunitiesFilter>;
+  volunteerOpportunities?: InputMaybe<Get_InvolvedVolunteerOpportunitiesFilter>;
   coursesTitle?: InputMaybe<StringFilter>;
   courses?: InputMaybe<Get_InvolvedCoursesFilter>;
   howToGetStartedTitle?: InputMaybe<StringFilter>;
@@ -724,13 +735,6 @@ export type Products = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type ImageFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
 export type ProductsProductsFilter = {
   name?: InputMaybe<StringFilter>;
   price?: InputMaybe<NumberFilter>;
@@ -786,6 +790,8 @@ export type BlogBlogPosts = {
   readTime?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Scalars['String']['output']>;
   featured?: Maybe<Scalars['Boolean']['output']>;
+  fullContent?: Maybe<Scalars['JSON']['output']>;
+  videoUrl?: Maybe<Scalars['String']['output']>;
 };
 
 export type Blog = Node & Document & {
@@ -798,6 +804,12 @@ export type Blog = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 export type BlogBlogPostsFilter = {
   title?: InputMaybe<StringFilter>;
   excerpt?: InputMaybe<StringFilter>;
@@ -807,6 +819,8 @@ export type BlogBlogPostsFilter = {
   readTime?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageFilter>;
   featured?: InputMaybe<BooleanFilter>;
+  fullContent?: InputMaybe<RichTextFilter>;
+  videoUrl?: InputMaybe<StringFilter>;
 };
 
 export type BlogFilter = {
@@ -1081,6 +1095,8 @@ export type ResourcesResourcesMutation = {
   downloads?: InputMaybe<Scalars['Float']['input']>;
   views?: InputMaybe<Scalars['Float']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
+  pdfFile?: InputMaybe<Scalars['String']['input']>;
+  videoFile?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ResourcesTechniquesMutation = {
@@ -1098,7 +1114,7 @@ export type ResourcesMutation = {
   techniques?: InputMaybe<Array<InputMaybe<ResourcesTechniquesMutation>>>;
 };
 
-export type Get_InvolvedOpportunitiesMutation = {
+export type Get_InvolvedVolunteerOpportunitiesMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   commitment?: InputMaybe<Scalars['String']['input']>;
@@ -1126,7 +1142,7 @@ export type Get_InvolvedMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   volunteerOpportunitiesTitle?: InputMaybe<Scalars['String']['input']>;
-  opportunities?: InputMaybe<Array<InputMaybe<Get_InvolvedOpportunitiesMutation>>>;
+  volunteerOpportunities?: InputMaybe<Array<InputMaybe<Get_InvolvedVolunteerOpportunitiesMutation>>>;
   coursesTitle?: InputMaybe<Scalars['String']['input']>;
   courses?: InputMaybe<Array<InputMaybe<Get_InvolvedCoursesMutation>>>;
   howToGetStartedTitle?: InputMaybe<Scalars['String']['input']>;
@@ -1176,6 +1192,8 @@ export type BlogBlogPostsMutation = {
   readTime?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
+  fullContent?: InputMaybe<Scalars['JSON']['input']>;
+  videoUrl?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type BlogMutation = {
@@ -1190,13 +1208,13 @@ export type PhilosophyPartsFragment = { __typename: 'Philosophy', title?: string
 
 export type ProjectsPartsFragment = { __typename: 'Projects', title?: string | null, subtitle?: string | null, projectsTitle?: string | null, eventsTitle?: string | null, projects?: Array<{ __typename: 'ProjectsProjects', title?: string | null, description?: string | null, status?: string | null, location?: string | null, participants?: number | null, startDate?: string | null, category?: string | null } | null> | null, upcomingEvents?: Array<{ __typename: 'ProjectsUpcomingEvents', title?: string | null, date?: string | null, time?: string | null, location?: string | null, type?: string | null, spots?: number | null } | null> | null };
 
-export type ResourcesPartsFragment = { __typename: 'Resources', title?: string | null, subtitle?: string | null, featuredResourcesTitle?: string | null, allResourcesTitle?: string | null, techniquesTitle?: string | null, resources?: Array<{ __typename: 'ResourcesResources', title?: string | null, description?: string | null, type?: string | null, category?: string | null, size?: string | null, duration?: string | null, downloads?: number | null, views?: number | null, featured?: boolean | null } | null> | null, techniques?: Array<{ __typename: 'ResourcesTechniques', title?: string | null, items?: Array<string | null> | null } | null> | null };
+export type ResourcesPartsFragment = { __typename: 'Resources', title?: string | null, subtitle?: string | null, featuredResourcesTitle?: string | null, allResourcesTitle?: string | null, techniquesTitle?: string | null, resources?: Array<{ __typename: 'ResourcesResources', title?: string | null, description?: string | null, type?: string | null, category?: string | null, size?: string | null, duration?: string | null, downloads?: number | null, views?: number | null, featured?: boolean | null, pdfFile?: string | null, videoFile?: string | null } | null> | null, techniques?: Array<{ __typename: 'ResourcesTechniques', title?: string | null, items?: Array<string | null> | null } | null> | null };
 
-export type Get_InvolvedPartsFragment = { __typename: 'Get_involved', title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, opportunities?: Array<{ __typename: 'Get_involvedOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefits?: Array<string | null> | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null };
+export type Get_InvolvedPartsFragment = { __typename: 'Get_involved', title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, volunteerOpportunities?: Array<{ __typename: 'Get_involvedVolunteerOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefits?: Array<string | null> | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null };
 
 export type ProductsPartsFragment = { __typename: 'Products', title?: string | null, subtitle?: string | null, featuredProductsTitle?: string | null, allProductsTitle?: string | null, servicesTitle?: string | null, products?: Array<{ __typename: 'ProductsProducts', name?: string | null, price?: number | null, originalPrice?: number | null, image?: string | null, category?: string | null, rating?: number | null, reviews?: number | null, inStock?: boolean | null, featured?: boolean | null, organic?: boolean | null, description?: string | null, features?: Array<string | null> | null } | null> | null, services?: Array<{ __typename: 'ProductsServices', title?: string | null, price?: string | null, description?: string | null, features?: Array<string | null> | null } | null> | null };
 
-export type BlogPartsFragment = { __typename: 'Blog', title?: string | null, subtitle?: string | null, blogPosts?: Array<{ __typename: 'BlogBlogPosts', title?: string | null, excerpt?: string | null, author?: string | null, date?: string | null, category?: string | null, readTime?: string | null, image?: string | null, featured?: boolean | null } | null> | null };
+export type BlogPartsFragment = { __typename: 'Blog', title?: string | null, subtitle?: string | null, blogPosts?: Array<{ __typename: 'BlogBlogPosts', title?: string | null, excerpt?: string | null, author?: string | null, date?: string | null, category?: string | null, readTime?: string | null, image?: string | null, featured?: boolean | null, fullContent?: any | null, videoUrl?: string | null } | null> | null };
 
 export type HomeQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1260,7 +1278,7 @@ export type ResourcesQueryVariables = Exact<{
 }>;
 
 
-export type ResourcesQuery = { __typename?: 'Query', resources: { __typename: 'Resources', id: string, title?: string | null, subtitle?: string | null, featuredResourcesTitle?: string | null, allResourcesTitle?: string | null, techniquesTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, resources?: Array<{ __typename: 'ResourcesResources', title?: string | null, description?: string | null, type?: string | null, category?: string | null, size?: string | null, duration?: string | null, downloads?: number | null, views?: number | null, featured?: boolean | null } | null> | null, techniques?: Array<{ __typename: 'ResourcesTechniques', title?: string | null, items?: Array<string | null> | null } | null> | null } };
+export type ResourcesQuery = { __typename?: 'Query', resources: { __typename: 'Resources', id: string, title?: string | null, subtitle?: string | null, featuredResourcesTitle?: string | null, allResourcesTitle?: string | null, techniquesTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, resources?: Array<{ __typename: 'ResourcesResources', title?: string | null, description?: string | null, type?: string | null, category?: string | null, size?: string | null, duration?: string | null, downloads?: number | null, views?: number | null, featured?: boolean | null, pdfFile?: string | null, videoFile?: string | null } | null> | null, techniques?: Array<{ __typename: 'ResourcesTechniques', title?: string | null, items?: Array<string | null> | null } | null> | null } };
 
 export type ResourcesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1272,14 +1290,14 @@ export type ResourcesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ResourcesConnectionQuery = { __typename?: 'Query', resourcesConnection: { __typename?: 'ResourcesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ResourcesConnectionEdges', cursor: string, node?: { __typename: 'Resources', id: string, title?: string | null, subtitle?: string | null, featuredResourcesTitle?: string | null, allResourcesTitle?: string | null, techniquesTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, resources?: Array<{ __typename: 'ResourcesResources', title?: string | null, description?: string | null, type?: string | null, category?: string | null, size?: string | null, duration?: string | null, downloads?: number | null, views?: number | null, featured?: boolean | null } | null> | null, techniques?: Array<{ __typename: 'ResourcesTechniques', title?: string | null, items?: Array<string | null> | null } | null> | null } | null } | null> | null } };
+export type ResourcesConnectionQuery = { __typename?: 'Query', resourcesConnection: { __typename?: 'ResourcesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ResourcesConnectionEdges', cursor: string, node?: { __typename: 'Resources', id: string, title?: string | null, subtitle?: string | null, featuredResourcesTitle?: string | null, allResourcesTitle?: string | null, techniquesTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, resources?: Array<{ __typename: 'ResourcesResources', title?: string | null, description?: string | null, type?: string | null, category?: string | null, size?: string | null, duration?: string | null, downloads?: number | null, views?: number | null, featured?: boolean | null, pdfFile?: string | null, videoFile?: string | null } | null> | null, techniques?: Array<{ __typename: 'ResourcesTechniques', title?: string | null, items?: Array<string | null> | null } | null> | null } | null } | null> | null } };
 
 export type Get_InvolvedQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Get_InvolvedQuery = { __typename?: 'Query', get_involved: { __typename: 'Get_involved', id: string, title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, opportunities?: Array<{ __typename: 'Get_involvedOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefits?: Array<string | null> | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null } };
+export type Get_InvolvedQuery = { __typename?: 'Query', get_involved: { __typename: 'Get_involved', id: string, title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, volunteerOpportunities?: Array<{ __typename: 'Get_involvedVolunteerOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefits?: Array<string | null> | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null } };
 
 export type Get_InvolvedConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1291,7 +1309,7 @@ export type Get_InvolvedConnectionQueryVariables = Exact<{
 }>;
 
 
-export type Get_InvolvedConnectionQuery = { __typename?: 'Query', get_involvedConnection: { __typename?: 'Get_involvedConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Get_involvedConnectionEdges', cursor: string, node?: { __typename: 'Get_involved', id: string, title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, opportunities?: Array<{ __typename: 'Get_involvedOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefits?: Array<string | null> | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null } | null } | null> | null } };
+export type Get_InvolvedConnectionQuery = { __typename?: 'Query', get_involvedConnection: { __typename?: 'Get_involvedConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Get_involvedConnectionEdges', cursor: string, node?: { __typename: 'Get_involved', id: string, title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, volunteerOpportunities?: Array<{ __typename: 'Get_involvedVolunteerOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefits?: Array<string | null> | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null } | null } | null> | null } };
 
 export type ProductsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1317,7 +1335,7 @@ export type BlogQueryVariables = Exact<{
 }>;
 
 
-export type BlogQuery = { __typename?: 'Query', blog: { __typename: 'Blog', id: string, title?: string | null, subtitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blogPosts?: Array<{ __typename: 'BlogBlogPosts', title?: string | null, excerpt?: string | null, author?: string | null, date?: string | null, category?: string | null, readTime?: string | null, image?: string | null, featured?: boolean | null } | null> | null } };
+export type BlogQuery = { __typename?: 'Query', blog: { __typename: 'Blog', id: string, title?: string | null, subtitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blogPosts?: Array<{ __typename: 'BlogBlogPosts', title?: string | null, excerpt?: string | null, author?: string | null, date?: string | null, category?: string | null, readTime?: string | null, image?: string | null, featured?: boolean | null, fullContent?: any | null, videoUrl?: string | null } | null> | null } };
 
 export type BlogConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1329,7 +1347,7 @@ export type BlogConnectionQueryVariables = Exact<{
 }>;
 
 
-export type BlogConnectionQuery = { __typename?: 'Query', blogConnection: { __typename?: 'BlogConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BlogConnectionEdges', cursor: string, node?: { __typename: 'Blog', id: string, title?: string | null, subtitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blogPosts?: Array<{ __typename: 'BlogBlogPosts', title?: string | null, excerpt?: string | null, author?: string | null, date?: string | null, category?: string | null, readTime?: string | null, image?: string | null, featured?: boolean | null } | null> | null } | null } | null> | null } };
+export type BlogConnectionQuery = { __typename?: 'Query', blogConnection: { __typename?: 'BlogConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BlogConnectionEdges', cursor: string, node?: { __typename: 'Blog', id: string, title?: string | null, subtitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blogPosts?: Array<{ __typename: 'BlogBlogPosts', title?: string | null, excerpt?: string | null, author?: string | null, date?: string | null, category?: string | null, readTime?: string | null, image?: string | null, featured?: boolean | null, fullContent?: any | null, videoUrl?: string | null } | null> | null } | null } | null> | null } };
 
 export const HomePartsFragmentDoc = gql`
     fragment HomeParts on Home {
@@ -1429,6 +1447,8 @@ export const ResourcesPartsFragmentDoc = gql`
     downloads
     views
     featured
+    pdfFile
+    videoFile
   }
   techniques {
     __typename
@@ -1443,7 +1463,7 @@ export const Get_InvolvedPartsFragmentDoc = gql`
   title
   subtitle
   volunteerOpportunitiesTitle
-  opportunities {
+  volunteerOpportunities {
     __typename
     title
     description
@@ -1520,6 +1540,8 @@ export const BlogPartsFragmentDoc = gql`
     readTime
     image
     featured
+    fullContent
+    videoUrl
   }
 }
     `;

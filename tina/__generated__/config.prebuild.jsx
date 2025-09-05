@@ -68,6 +68,13 @@ var config_default = defineConfig({
             label: "Features",
             name: "features",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Feature" }),
+              defaultItem: {
+                title: "New Feature",
+                description: "Feature description..."
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -182,6 +189,13 @@ var config_default = defineConfig({
             label: "Core Values",
             name: "coreValues",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Core Value" }),
+              defaultItem: {
+                title: "New Core Value",
+                description: "Value description..."
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -228,6 +242,18 @@ var config_default = defineConfig({
             label: "Projects",
             name: "projects",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Project" }),
+              defaultItem: {
+                title: "New Project",
+                description: "Project description...",
+                status: "ongoing",
+                location: "TBD",
+                participants: 0,
+                startDate: "TBD",
+                category: "General"
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -277,6 +303,17 @@ var config_default = defineConfig({
             label: "Upcoming Events",
             name: "upcomingEvents",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Event" }),
+              defaultItem: {
+                title: "New Event",
+                date: "TBD",
+                time: "TBD",
+                location: "TBD",
+                type: "General",
+                spots: 0
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -318,106 +355,71 @@ var config_default = defineConfig({
         path: "content/resources",
         format: "json",
         ui: {
-          router: ({ document }) => {
-            return `/resources?lang=${document._sys.filename}`;
-          }
+          router: ({ document }) => `/resources?lang=${document._sys.filename}`
         },
         fields: [
-          {
-            type: "string",
-            label: "Title",
-            name: "title"
-          },
-          {
-            type: "string",
-            label: "Subtitle",
-            name: "subtitle"
-          },
-          {
-            type: "string",
-            label: "Featured Resources Title",
-            name: "featuredResourcesTitle"
-          },
-          {
-            type: "string",
-            label: "All Resources Title",
-            name: "allResourcesTitle"
-          },
-          {
-            type: "string",
-            label: "Techniques Title",
-            name: "techniquesTitle"
-          },
+          { type: "string", label: "Title", name: "title" },
+          { type: "string", label: "Subtitle", name: "subtitle" },
+          { type: "string", label: "Featured Resources Title", name: "featuredResourcesTitle" },
+          { type: "string", label: "All Resources Title", name: "allResourcesTitle" },
+          { type: "string", label: "Techniques Title", name: "techniquesTitle" },
+          // Resources list
           {
             type: "object",
             label: "Resources",
             name: "resources",
             list: true,
-            fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title"
-              },
-              {
-                type: "string",
-                label: "Description",
-                name: "description"
-              },
-              {
-                type: "string",
-                label: "Type",
-                name: "type"
-              },
-              {
-                type: "string",
-                label: "Category",
-                name: "category"
-              },
-              {
-                type: "string",
-                label: "Size",
-                name: "size"
-              },
-              {
-                type: "string",
-                label: "Duration",
-                name: "duration"
-              },
-              {
-                type: "number",
-                label: "Downloads",
-                name: "downloads"
-              },
-              {
-                type: "number",
-                label: "Views",
-                name: "views"
-              },
-              {
-                type: "boolean",
-                label: "Featured",
-                name: "featured"
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Resource" }),
+              defaultItem: {
+                title: "New Resource",
+                description: "Resource description...",
+                type: "Document",
+                category: "General",
+                size: "N/A",
+                duration: "N/A",
+                downloads: 0,
+                views: 0,
+                featured: false
               }
+            },
+            fields: [
+              { type: "string", label: "Title", name: "title" },
+              { type: "string", label: "Description", name: "description", ui: { component: "textarea" } },
+              { type: "string", label: "Type", name: "type", options: ["Document", "Video", "PDF"] },
+              { type: "string", label: "Category", name: "category" },
+              { type: "string", label: "Size", name: "size" },
+              { type: "string", label: "Duration", name: "duration" },
+              { type: "number", label: "Downloads", name: "downloads" },
+              { type: "number", label: "Views", name: "views" },
+              { type: "boolean", label: "Featured", name: "featured" },
+              // ✅ Direct PDF upload (changed from string to image type)
+              {
+                type: "image",
+                label: "PDF File",
+                name: "pdfFile",
+                // Optional: Add file type restrictions
+                ui: {
+                  accept: ".pdf"
+                }
+              },
+              // ✅ Video upload
+              { type: "image", label: "Video File", name: "videoFile" }
             ]
           },
+          // Techniques list
           {
             type: "object",
             label: "Techniques",
             name: "techniques",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Technique" }),
+              defaultItem: { title: "New Technique", items: ["Item 1", "Item 2"] }
+            },
             fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title"
-              },
-              {
-                type: "string",
-                label: "Items",
-                name: "items",
-                list: true
-              }
+              { type: "string", label: "Title", name: "title" },
+              { type: "string", label: "Items", name: "items", list: true }
             ]
           }
         ]
@@ -450,9 +452,19 @@ var config_default = defineConfig({
           },
           {
             type: "object",
-            label: "Opportunities",
-            name: "opportunities",
+            label: "Volunteer Opportunities",
+            name: "volunteerOpportunities",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Opportunity" }),
+              defaultItem: {
+                title: "New Opportunity",
+                description: "Description of the opportunity",
+                commitment: "Flexible",
+                type: "Ongoing",
+                benefits: ["Learn new skills"]
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -478,7 +490,11 @@ var config_default = defineConfig({
                 type: "string",
                 label: "Benefits",
                 name: "benefits",
-                list: true
+                list: true,
+                ui: {
+                  component: "list",
+                  defaultItem: "New benefit"
+                }
               }
             ]
           },
@@ -492,6 +508,18 @@ var config_default = defineConfig({
             label: "Courses",
             name: "courses",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Course" }),
+              defaultItem: {
+                title: "New Course",
+                duration: "4 weeks",
+                format: "Online",
+                level: "Beginner",
+                nextSession: "TBD",
+                price: "Free",
+                highlights: ["Interactive sessions"]
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -527,7 +555,11 @@ var config_default = defineConfig({
                 type: "string",
                 label: "Highlights",
                 name: "highlights",
-                list: true
+                list: true,
+                ui: {
+                  component: "list",
+                  defaultItem: "New highlight"
+                }
               }
             ]
           },
@@ -541,6 +573,14 @@ var config_default = defineConfig({
             label: "Steps",
             name: "steps",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: `Step ${item?.number || "?"}: ${item?.title || "New Step"}` }),
+              defaultItem: {
+                number: "1",
+                title: "New Step",
+                description: "Step description..."
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -612,6 +652,23 @@ var config_default = defineConfig({
             label: "Products",
             name: "products",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.name || "New Product" }),
+              defaultItem: {
+                name: "New Product",
+                price: 0,
+                originalPrice: 0,
+                image: "",
+                category: "General",
+                rating: 5,
+                reviews: 0,
+                inStock: true,
+                featured: false,
+                organic: false,
+                description: "Product description...",
+                features: ["Feature 1"]
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -672,7 +729,11 @@ var config_default = defineConfig({
                 type: "string",
                 label: "Features",
                 name: "features",
-                list: true
+                list: true,
+                ui: {
+                  component: "list",
+                  defaultItem: "New feature"
+                }
               }
             ]
           },
@@ -681,6 +742,15 @@ var config_default = defineConfig({
             label: "Services",
             name: "services",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Service" }),
+              defaultItem: {
+                title: "New Service",
+                price: "Contact for pricing",
+                description: "Service description...",
+                features: ["Feature 1"]
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -701,7 +771,11 @@ var config_default = defineConfig({
                 type: "string",
                 label: "Features",
                 name: "features",
-                list: true
+                list: true,
+                ui: {
+                  component: "list",
+                  defaultItem: "New feature"
+                }
               }
             ]
           }
@@ -733,6 +807,20 @@ var config_default = defineConfig({
             label: "Blog Posts",
             name: "blogPosts",
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || "New Blog Post" }),
+              defaultItem: {
+                title: "New Blog Post",
+                excerpt: "Enter blog post excerpt...",
+                author: "Author Name",
+                date: (/* @__PURE__ */ new Date()).toLocaleDateString(),
+                category: "General",
+                readTime: "5 min read",
+                featured: false,
+                fullContent: "",
+                videoUrl: ""
+              }
+            },
             fields: [
               {
                 type: "string",
@@ -776,6 +864,18 @@ var config_default = defineConfig({
                 type: "boolean",
                 label: "Featured",
                 name: "featured"
+              },
+              {
+                type: "rich-text",
+                label: "Full Content",
+                name: "fullContent",
+                description: "Complete article content (will be displayed on individual post pages)"
+              },
+              {
+                type: "string",
+                label: "Video URL",
+                name: "videoUrl",
+                description: "YouTube, Vimeo, or direct video URL (optional)"
               }
             ]
           }

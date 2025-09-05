@@ -10,7 +10,9 @@
       "category": "Permaculture",
       "readTime": "8 min read",
       "image": "/logo.png",
-      "featured": true
+      "featured": true,
+      "fullContent": "Vanakam\n",
+      "videoUrl": "https://www.youtube.com/watch?v=qz2SZC99pGU&list=RDGMEMCMFH2exzjBeE_zAHHJOdxgVM4Bsc2uI_LsM&index=3&ab_channel=LD.PAUL-Topic"
     },
     {
       "title": "Traditional Tamil Farming Meets Modern Sustainability",
@@ -20,7 +22,8 @@
       "category": "Organic Farming",
       "readTime": "6 min read",
       "image": "/images/blog/tamil-farming.jpg",
-      "featured": false
+      "featured": false,
+      "fullContent": ""
     },
     {
       "title": "Community Workshop Highlights: Companion Planting Success Stories",
@@ -30,7 +33,8 @@
       "category": "Workshops",
       "readTime": "5 min read",
       "image": "/images/blog/companion-planting.jpg",
-      "featured": false
+      "featured": false,
+      "fullContent": ""
     },
     {
       "title": "Natural Pest Management: Chemical-Free Solutions",
@@ -40,7 +44,8 @@
       "category": "Organic Farming",
       "readTime": "7 min read",
       "image": "/images/blog/pest-management.jpg",
-      "featured": false
+      "featured": false,
+      "fullContent": ""
     },
     {
       "title": "Building Resilient Communities Through Seed Sharing",
@@ -50,7 +55,8 @@
       "category": "Community",
       "readTime": "4 min read",
       "image": "/images/blog/seed-sharing.jpg",
-      "featured": false
+      "featured": false,
+      "fullContent": ""
     },
     {
       "title": "Water Harvesting Techniques for Small Farms",
@@ -60,7 +66,8 @@
       "category": "Sustainability",
       "readTime": "6 min read",
       "image": "/images/blog/water-harvesting.jpg",
-      "featured": false
+      "featured": false,
+      "fullContent": ""
     }
   ]
 }

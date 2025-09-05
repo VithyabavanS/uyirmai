@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"vite\"",
+    "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"vite\"",
     "build": "tinacms build && vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
