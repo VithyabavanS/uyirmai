@@ -397,11 +397,7 @@ var config_default = defineConfig({
               {
                 type: "image",
                 label: "PDF File",
-                name: "pdfFile",
-                // Optional: Add file type restrictions
-                ui: {
-                  accept: ".pdf"
-                }
+                name: "pdfFile"
               },
               // ✅ Video upload
               { type: "image", label: "Video File", name: "videoFile" }
@@ -492,8 +488,7 @@ var config_default = defineConfig({
                 name: "benefits",
                 list: true,
                 ui: {
-                  component: "list",
-                  defaultItem: "New benefit"
+                  component: "list"
                 }
               }
             ]
@@ -557,8 +552,7 @@ var config_default = defineConfig({
                 name: "highlights",
                 list: true,
                 ui: {
-                  component: "list",
-                  defaultItem: "New highlight"
+                  component: "list"
                 }
               }
             ]
@@ -731,8 +725,7 @@ var config_default = defineConfig({
                 name: "features",
                 list: true,
                 ui: {
-                  component: "list",
-                  defaultItem: "New feature"
+                  component: "list"
                 }
               }
             ]
@@ -773,8 +766,7 @@ var config_default = defineConfig({
                 name: "features",
                 list: true,
                 ui: {
-                  component: "list",
-                  defaultItem: "New feature"
+                  component: "list"
                 }
               }
             ]

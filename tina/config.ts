@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { defineConfig } from "tinacms";
 
 // Your hosting provider likely exposes this as an environment variable
@@ -407,11 +408,7 @@ export default defineConfig({
               { 
                 type: "image", 
                 label: "PDF File", 
-                name: "pdfFile",
-                // Optional: Add file type restrictions
-                ui: {
-                  accept: ".pdf"
-                }
+                name: "pdfFile"
               },
 
               // ✅ Video upload
@@ -505,7 +502,6 @@ export default defineConfig({
                 list: true,
                 ui: {
                   component: "list",
-                  defaultItem: "New benefit",
                 },
               },
             ],
@@ -570,7 +566,6 @@ export default defineConfig({
                 list: true,
                 ui: {
                   component: "list",
-                  defaultItem: "New highlight",
                 },
               },
             ],
@@ -744,7 +739,6 @@ export default defineConfig({
           list: true,
           ui: {
             component: "list",
-            defaultItem: "New feature",
           },
         },
       ],
@@ -786,7 +780,6 @@ export default defineConfig({
           list: true,
           ui: {
             component: "list",
-            defaultItem: "New feature",
           },
         },
       ],
