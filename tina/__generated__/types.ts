@@ -609,7 +609,7 @@ export type Get_InvolvedVolunteerOpportunities = {
   description?: Maybe<Scalars['String']['output']>;
   commitment?: Maybe<Scalars['String']['output']>;
   type?: Maybe<Scalars['String']['output']>;
-  benefits?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  benefitsText?: Maybe<Scalars['String']['output']>;
 };
 
 export type Get_InvolvedCourses = {
@@ -652,7 +652,7 @@ export type Get_InvolvedVolunteerOpportunitiesFilter = {
   description?: InputMaybe<StringFilter>;
   commitment?: InputMaybe<StringFilter>;
   type?: InputMaybe<StringFilter>;
-  benefits?: InputMaybe<StringFilter>;
+  benefitsText?: InputMaybe<StringFilter>;
 };
 
 export type Get_InvolvedCoursesFilter = {
@@ -1119,7 +1119,7 @@ export type Get_InvolvedVolunteerOpportunitiesMutation = {
   description?: InputMaybe<Scalars['String']['input']>;
   commitment?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
-  benefits?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  benefitsText?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Get_InvolvedCoursesMutation = {
@@ -1210,7 +1210,7 @@ export type ProjectsPartsFragment = { __typename: 'Projects', title?: string | n
 
 export type ResourcesPartsFragment = { __typename: 'Resources', title?: string | null, subtitle?: string | null, featuredResourcesTitle?: string | null, allResourcesTitle?: string | null, techniquesTitle?: string | null, resources?: Array<{ __typename: 'ResourcesResources', title?: string | null, description?: string | null, type?: string | null, category?: string | null, size?: string | null, duration?: string | null, downloads?: number | null, views?: number | null, featured?: boolean | null, pdfFile?: string | null, videoFile?: string | null } | null> | null, techniques?: Array<{ __typename: 'ResourcesTechniques', title?: string | null, items?: Array<string | null> | null } | null> | null };
 
-export type Get_InvolvedPartsFragment = { __typename: 'Get_involved', title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, volunteerOpportunities?: Array<{ __typename: 'Get_involvedVolunteerOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefits?: Array<string | null> | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null };
+export type Get_InvolvedPartsFragment = { __typename: 'Get_involved', title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, volunteerOpportunities?: Array<{ __typename: 'Get_involvedVolunteerOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefitsText?: string | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null };
 
 export type ProductsPartsFragment = { __typename: 'Products', title?: string | null, subtitle?: string | null, featuredProductsTitle?: string | null, allProductsTitle?: string | null, servicesTitle?: string | null, products?: Array<{ __typename: 'ProductsProducts', name?: string | null, price?: number | null, originalPrice?: number | null, image?: string | null, category?: string | null, rating?: number | null, reviews?: number | null, inStock?: boolean | null, featured?: boolean | null, organic?: boolean | null, description?: string | null, features?: Array<string | null> | null } | null> | null, services?: Array<{ __typename: 'ProductsServices', title?: string | null, price?: string | null, description?: string | null, features?: Array<string | null> | null } | null> | null };
 
@@ -1297,7 +1297,7 @@ export type Get_InvolvedQueryVariables = Exact<{
 }>;
 
 
-export type Get_InvolvedQuery = { __typename?: 'Query', get_involved: { __typename: 'Get_involved', id: string, title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, volunteerOpportunities?: Array<{ __typename: 'Get_involvedVolunteerOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefits?: Array<string | null> | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null } };
+export type Get_InvolvedQuery = { __typename?: 'Query', get_involved: { __typename: 'Get_involved', id: string, title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, volunteerOpportunities?: Array<{ __typename: 'Get_involvedVolunteerOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefitsText?: string | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null } };
 
 export type Get_InvolvedConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1309,7 +1309,7 @@ export type Get_InvolvedConnectionQueryVariables = Exact<{
 }>;
 
 
-export type Get_InvolvedConnectionQuery = { __typename?: 'Query', get_involvedConnection: { __typename?: 'Get_involvedConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Get_involvedConnectionEdges', cursor: string, node?: { __typename: 'Get_involved', id: string, title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, volunteerOpportunities?: Array<{ __typename: 'Get_involvedVolunteerOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefits?: Array<string | null> | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null } | null } | null> | null } };
+export type Get_InvolvedConnectionQuery = { __typename?: 'Query', get_involvedConnection: { __typename?: 'Get_involvedConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Get_involvedConnectionEdges', cursor: string, node?: { __typename: 'Get_involved', id: string, title?: string | null, subtitle?: string | null, volunteerOpportunitiesTitle?: string | null, coursesTitle?: string | null, howToGetStartedTitle?: string | null, contactFormTitle?: string | null, contactFormDescription?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, volunteerOpportunities?: Array<{ __typename: 'Get_involvedVolunteerOpportunities', title?: string | null, description?: string | null, commitment?: string | null, type?: string | null, benefitsText?: string | null } | null> | null, courses?: Array<{ __typename: 'Get_involvedCourses', title?: string | null, duration?: string | null, format?: string | null, level?: string | null, nextSession?: string | null, price?: string | null, highlights?: Array<string | null> | null } | null> | null, steps?: Array<{ __typename: 'Get_involvedSteps', number?: string | null, title?: string | null, description?: string | null } | null> | null } | null } | null> | null } };
 
 export type ProductsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1469,7 +1469,7 @@ export const Get_InvolvedPartsFragmentDoc = gql`
     description
     commitment
     type
-    benefits
+    benefitsText
   }
   coursesTitle
   courses {

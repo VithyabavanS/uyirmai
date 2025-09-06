@@ -8,44 +8,28 @@
       "description": "Join our community garden projects and help establish sustainable food systems in local neighborhoods.",
       "commitment": "4-8 hours/week",
       "type": "Ongoing",
-      "benefits": [
-        "Learn hands-on skills",
-        "Connect with community",
-        "Make real impact"
-      ]
+      "benefitsText": "Learn hands-on skills, Connect with community, Make real impact"
     },
     {
       "title": "Workshop Assistant",
       "description": "Support our educational workshops by helping participants learn permaculture and organic farming techniques.",
       "commitment": "Weekend workshops",
       "type": "Flexible",
-      "benefits": [
-        "Teaching experience",
-        "Skill development",
-        "Event coordination"
-      ]
+      "benefitsText": "Teaching experience, Skill development, Event coordination"
     },
     {
       "title": "Mentorship Program",
       "description": "Guide newcomers in their sustainable living journey and share your knowledge and experience.",
       "commitment": "2-3 hours/week",
       "type": "Long-term",
-      "benefits": [
-        "Leadership skills",
-        "Personal growth",
-        "Community building"
-      ]
+      "benefitsText": "Leadership skills, Personal growth, Community building"
     },
     {
       "title": "Professional Services",
       "description": "Contribute your professional skills in areas like design, marketing, technology, or administration.",
       "commitment": "Project-based",
       "type": "Flexible",
-      "benefits": [
-        "Portfolio building",
-        "Networking",
-        "Social impact"
-      ]
+      "benefitsText": "Portfolio building, Networking, Social impact"
     }
   ],
   "coursesTitle": "Courses & Training Programs",

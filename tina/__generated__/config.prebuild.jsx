@@ -26,11 +26,10 @@ var config_default = defineConfig({
         path: "content/home",
         format: "json",
         ui: {
-          router: ({ document }) => {
-            return `/?lang=${document._sys.filename}`;
-          }
+          router: ({ document }) => `/?lang=${document._sys.filename}`
         },
         fields: [
+          // Hero Section
           {
             type: "string",
             label: "Hero Title",
@@ -46,63 +45,42 @@ var config_default = defineConfig({
             label: "Hero Button Text",
             name: "heroButton"
           },
+          // Features Section
           {
             type: "object",
             label: "Features Section",
             name: "featuresSection",
             fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title"
-              },
-              {
-                type: "string",
-                label: "Subtitle",
-                name: "subtitle"
-              }
+              { type: "string", label: "Title", name: "title" },
+              { type: "string", label: "Subtitle", name: "subtitle" }
             ]
           },
+          // Features List
           {
             type: "object",
             label: "Features",
             name: "features",
             list: true,
             ui: {
-              itemProps: (item) => ({ label: item?.title || "New Feature" }),
-              defaultItem: {
+              itemProps: (item) => ({ label: item.title || "New Feature" }),
+              defaultItem: () => ({
                 title: "New Feature",
                 description: "Feature description..."
-              }
+              })
             },
             fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title"
-              },
-              {
-                type: "string",
-                label: "Description",
-                name: "description"
-              }
+              { type: "string", label: "Title", name: "title" },
+              { type: "string", label: "Description", name: "description" }
             ]
           },
+          // CTA Section
           {
             type: "object",
             label: "CTA Section",
             name: "cta",
             fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title"
-              },
-              {
-                type: "string",
-                label: "Subtitle",
-                name: "subtitle"
-              }
+              { type: "string", label: "Title", name: "title" },
+              { type: "string", label: "Subtitle", name: "subtitle" }
             ]
           }
         ]
@@ -457,8 +435,7 @@ var config_default = defineConfig({
                 title: "New Opportunity",
                 description: "Description of the opportunity",
                 commitment: "Flexible",
-                type: "Ongoing",
-                benefits: ["Learn new skills"]
+                type: "Ongoing"
               }
             },
             fields: [
@@ -484,12 +461,8 @@ var config_default = defineConfig({
               },
               {
                 type: "string",
-                label: "Benefits",
-                name: "benefits",
-                list: true,
-                ui: {
-                  component: "list"
-                }
+                label: "Benefits (comma separated)",
+                name: "benefitsText"
               }
             ]
           },
@@ -505,7 +478,7 @@ var config_default = defineConfig({
             list: true,
             ui: {
               itemProps: (item) => ({ label: item?.title || "New Course" }),
-              defaultItem: {
+              defaultItem: () => ({
                 title: "New Course",
                 duration: "4 weeks",
                 format: "Online",
@@ -513,7 +486,7 @@ var config_default = defineConfig({
                 nextSession: "TBD",
                 price: "Free",
                 highlights: ["Interactive sessions"]
-              }
+              })
             },
             fields: [
               {
@@ -550,10 +523,7 @@ var config_default = defineConfig({
                 type: "string",
                 label: "Highlights",
                 name: "highlights",
-                list: true,
-                ui: {
-                  component: "list"
-                }
+                list: true
               }
             ]
           },

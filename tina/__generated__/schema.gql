@@ -417,7 +417,7 @@ type Get_involvedVolunteerOpportunities {
   description: String
   commitment: String
   type: String
-  benefits: [String]
+  benefitsText: String
 }
 
 type Get_involvedCourses {
@@ -457,7 +457,7 @@ input Get_involvedVolunteerOpportunitiesFilter {
   description: StringFilter
   commitment: StringFilter
   type: StringFilter
-  benefits: StringFilter
+  benefitsText: StringFilter
 }
 
 input Get_involvedCoursesFilter {
@@ -795,7 +795,7 @@ input Get_involvedVolunteerOpportunitiesMutation {
   description: String
   commitment: String
   type: String
-  benefits: [String]
+  benefitsText: String
 }
 
 input Get_involvedCoursesMutation {

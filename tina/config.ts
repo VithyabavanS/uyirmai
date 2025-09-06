@@ -30,92 +30,74 @@ export default defineConfig({
   schema: {
     collections: [
       {
-        name: "home",
-        label: "Home Page",
-        path: "content/home",
-        format: "json",
-        ui: {
-          router: ({ document }) => {
-            return `/?lang=${document._sys.filename}`;
-          },
-        },
-        fields: [
-          {
-            type: "string",
-            label: "Hero Title",
-            name: "heroTitle",
-          },
-          {
-            type: "string",
-            label: "Hero Subtitle",
-            name: "heroSubtitle",
-          },
-          {
-            type: "string",
-            label: "Hero Button Text",
-            name: "heroButton",
-          },
-          {
-            type: "object",
-            label: "Features Section",
-            name: "featuresSection",
-            fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title",
-              },
-              {
-                type: "string",
-                label: "Subtitle",
-                name: "subtitle",
-              },
-            ],
-          },
-          {
-            type: "object",
-            label: "Features",
-            name: "features",
-            list: true,
-            ui: {
-              itemProps: (item) => ({ label: item?.title || "New Feature" }),
-              defaultItem: {
-                title: "New Feature",
-                description: "Feature description...",
-              },
-            },
-            fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title",
-              },
-              {
-                type: "string",
-                label: "Description",
-                name: "description",
-              },
-            ],
-          },
-          {
-            type: "object",
-            label: "CTA Section",
-            name: "cta",
-            fields: [
-              {
-                type: "string",
-                label: "Title",
-                name: "title",
-              },
-              {
-                type: "string",
-                label: "Subtitle",
-                name: "subtitle",
-              },
-            ],
-          },
-        ],
+  name: "home",
+  label: "Home Page",
+  path: "content/home",
+  format: "json",
+  ui: {
+    router: ({ document }) => `/?lang=${document._sys.filename}`,
+  },
+  fields: [
+    // Hero Section
+    {
+      type: "string",
+      label: "Hero Title",
+      name: "heroTitle",
+    },
+    {
+      type: "string",
+      label: "Hero Subtitle",
+      name: "heroSubtitle",
+    },
+    {
+      type: "string",
+      label: "Hero Button Text",
+      name: "heroButton",
+    },
+
+    // Features Section
+    {
+      type: "object",
+      label: "Features Section",
+      name: "featuresSection",
+      fields: [
+        { type: "string", label: "Title", name: "title" },
+        { type: "string", label: "Subtitle", name: "subtitle" },
+      ],
+    },
+
+    // Features List
+    {
+      type: "object",
+      label: "Features",
+      name: "features",
+      list: true,
+      ui: {
+        itemProps: (item) => ({ label: item.title || "New Feature" }),
+        defaultItem: () => ({
+          title: "New Feature",
+          description: "Feature description...",
+        }),
       },
+      fields: [
+        { type: "string", label: "Title", name: "title" },
+        { type: "string", label: "Description", name: "description" },
+      ],
+    },
+
+    // CTA Section
+    {
+      type: "object",
+      label: "CTA Section",
+      name: "cta",
+      fields: [
+        { type: "string", label: "Title", name: "title" },
+        { type: "string", label: "Subtitle", name: "subtitle" },
+      ],
+    },
+  ],
+}
+,
       {
         name: "philosophy",
         label: "Philosophy Page",
@@ -471,7 +453,6 @@ export default defineConfig({
                 description: "Description of the opportunity",
                 commitment: "Flexible",
                 type: "Ongoing",
-                benefits: ["Learn new skills"],
               },
             },
             fields: [
@@ -497,12 +478,8 @@ export default defineConfig({
               },
               {
                 type: "string",
-                label: "Benefits",
-                name: "benefits",
-                list: true,
-                ui: {
-                  component: "list",
-                },
+                label: "Benefits (comma separated)",
+                name: "benefitsText",
               },
             ],
           },
@@ -518,7 +495,7 @@ export default defineConfig({
             list: true,
             ui: {
               itemProps: (item) => ({ label: item?.title || "New Course" }),
-              defaultItem: {
+              defaultItem: () => ({
                 title: "New Course",
                 duration: "4 weeks",
                 format: "Online",
@@ -526,7 +503,7 @@ export default defineConfig({
                 nextSession: "TBD",
                 price: "Free",
                 highlights: ["Interactive sessions"],
-              },
+              }),
             },
             fields: [
               {
@@ -564,9 +541,6 @@ export default defineConfig({
                 label: "Highlights",
                 name: "highlights",
                 list: true,
-                ui: {
-                  component: "list",
-                },
               },
             ],
           },

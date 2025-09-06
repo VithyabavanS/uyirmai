@@ -113,7 +113,7 @@ fragment Get_involvedParts on Get_involved {
     description
     commitment
     type
-    benefits
+    benefitsText
   }
   coursesTitle
   courses {

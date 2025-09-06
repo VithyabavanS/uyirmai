@@ -121,14 +121,9 @@ const GetInvolved = (props) => {
                       <CheckCircle size={16} className="mr-2 text-emerald-600" />
                       What you'll gain:
                     </h4>
-                    <ul className="space-y-2">
-                      {opportunity.benefits?.map((benefit, i) => (
-                        <li key={i} className="text-sm text-muted-foreground flex items-start" data-tina-field={`volunteerOpportunities.${index}.benefits.${i}`}>
-                          <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="text-sm text-muted-foreground" data-tina-field={`volunteerOpportunities.${index}.benefitsText`}>
+                      {opportunity.benefitsText}
+                    </div>
                   </div>
                   <Button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105">
                     Apply Now
@@ -247,7 +242,7 @@ const GetInvolved = (props) => {
               >
                 <div className="relative mb-6">
                   <div className="w-20 h-20 mx-auto bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-emerald-500/25 transform group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
-                    <span data-tina-field="number" className="text-2xl font-bold text-white">{step.number}</span>
+                    <span data-tina-field={`steps.${index}.number`} className="text-2xl font-bold text-white">{step.number}</span>
                   </div>
                   <div className="absolute inset-0 w-20 h-20 mx-auto bg-emerald-400 rounded-2xl blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
                   
@@ -256,10 +251,10 @@ const GetInvolved = (props) => {
                     <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-emerald-300 to-transparent" />
                   )}
                 </div>
-                <h3 data-tina-field="title" className="font-heading text-lg font-semibold text-foreground mb-3 group-hover:text-emerald-700 transition-colors duration-300">
+                <h3 data-tina-field={`steps.${index}.title`} className="font-heading text-lg font-semibold text-foreground mb-3 group-hover:text-emerald-700 transition-colors duration-300">
                   {step.title}
                 </h3>
-                <p data-tina-field="description" className="text-sm text-muted-foreground leading-relaxed">
+                <p data-tina-field={`steps.${index}.description`} className="text-sm text-muted-foreground leading-relaxed">
                   {step.description}
                 </p>
               </div>
