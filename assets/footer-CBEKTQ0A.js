@@ -1,0 +1,1 @@
+const o="Follow Us",e="123 Organic Lane, Green Valley, Tamil Nadu 600001",l="+91 98765 43210",s="hello@uyirmai.org",a={followUs:o,address:e,phone:l,email:s};export{e as address,a as default,s as email,o as followUs,l as phone};

@@ -1,0 +1,1 @@
+const o="எங்களைப் பின்தொடருங்கள்",s="123 ஆர்கானிக் லேன், கிரீன் வேலி, தமிழ்நாடு 600001",e="+91 98765 43210",l="hello@uyirmai.org",t={followUs:o,address:s,phone:e,email:l};export{s as address,t as default,l as email,o as followUs,e as phone};

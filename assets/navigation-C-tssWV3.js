@@ -1,0 +1,1 @@
+const o="முகப்பு",s="உயிர்மை தத்துவம்",t="திட்டங்கள் & நிகழ்வுகள்",c="வலைப்பதிவு",e="வளங்கள்",n="பங்கேற்க",p="தயாரிப்புகள் & சேவைகள்",r={home:o,philosophy:s,projects:t,blog:c,resources:e,getInvolved:n,products:p};export{c as blog,r as default,n as getInvolved,o as home,s as philosophy,p as products,t as projects,e as resources};

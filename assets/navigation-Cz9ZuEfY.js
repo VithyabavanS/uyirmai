@@ -1,0 +1,1 @@
+const o="Home",s="Uyirmai Philosophy",e="Projects & Events",t="Blog",c="Resources",n="Get Involved",r="Products & Services",l={home:o,philosophy:s,projects:e,blog:t,resources:c,getInvolved:n,products:r};export{t as blog,l as default,n as getInvolved,o as home,s as philosophy,r as products,e as projects,c as resources};
