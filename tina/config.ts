@@ -448,12 +448,13 @@ export default defineConfig({
             list: true,
             ui: {
               itemProps: (item) => ({ label: item?.title || "New Opportunity" }),
-              defaultItem: {
+              defaultItem: () => ({
                 title: "New Opportunity",
                 description: "Description of the opportunity",
                 commitment: "Flexible",
                 type: "Ongoing",
-              },
+                benefitsText: "",
+              }),
             },
             fields: [
               {

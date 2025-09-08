@@ -24,6 +24,7 @@ const Home = (props) => {
     "Community Workshops": Users,
     "Educational Resources": BookOpen,
     "Organic Products": ShoppingBag,
+    "New Feature": Sparkles,
   };
 
   const features = homeData.features.map((feature) => ({

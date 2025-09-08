@@ -25,6 +25,7 @@ const GetInvolved = (props) => {
     "Workshop Assistant": BookOpen,
     "Mentorship Program": Heart,
     "Professional Services": Briefcase,
+    "New Opportunity": Briefcase,
   };
 
   // Add loading state if data is not available
