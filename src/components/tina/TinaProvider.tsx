@@ -1,5 +1,5 @@
 import React from 'react'
-import { TinaProvider } from 'tinacms/dist/react'
+import { TinaCMS, TinaProvider } from 'tinacms'
 import client from '../../../tina/__generated__/client'
 import { TinaCMS } from 'tinacms'
 
