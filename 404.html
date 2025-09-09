@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // Function to get the base path from the current URL
+      function getBasePath() {
+        const pathSegments = window.location.pathname.split('/');
+        // Assuming the repo name is the second segment in the path for GitHub Pages
+        // e.g., https://username.github.io/repo-name/admin
+        // pathSegments will be ["", "repo-name", "admin"]
+        // So, the base path is the second segment
+        if (pathSegments.length > 1 && pathSegments[1] !== '') {
+          return '/' + pathSegments[1];
+        }
+        return ''; // For user.github.io (root domain)
+      }
+
+      const path = window.location.pathname;
+      const search = window.location.search;
+      const hash = window.location.hash;
+      const basePath = getBasePath();
+
+      // Construct the new URL to redirect to index.html with the full path as a query parameter
+      // This allows the client-side router to pick up the original path
+               const newPath = basePath + '/#' + path + hash;
+
+      // Redirect to the new URL
+      window.location.replace(newPath);
+    </script>
+  </head>
+  <body>
+    <p>If you are not redirected automatically, follow this <a id="redirectLink" href="#">link</a>.</p>
+    <script>
+      document.getElementById('redirectLink').href = newPath;
+    </script>
+  </body>
+</html>
