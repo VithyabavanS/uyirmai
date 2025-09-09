@@ -10,6 +10,8 @@ import client from '../../tina/__generated__/client';
 
 const Home = (props) => {
   const { t } = useLanguage();
+  const { language } = useLanguage();
+  const [blogData, setBlogData] = React.useState(null);
 
   const { data } = useTina({
     query: props.query,
@@ -18,6 +20,20 @@ const Home = (props) => {
   });
 
   const homeData = data.home;
+
+  React.useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        const res = await client.queries.blog({
+          relativePath: `${language}.json`,
+        });
+        setBlogData(res.data.blog);
+      } catch (error) {
+        console.error('Error fetching blog data:', error);
+      }
+    };
+    fetchBlogData();
+  }, [language]);
 
   const featureIcons = {
     "Sustainable Practices": Leaf,
@@ -32,26 +48,9 @@ const Home = (props) => {
     icon: featureIcons[feature.title],
   }));
 
-  const latestPosts = [
-    {
-      title: "Starting Your First Permaculture Garden",
-      excerpt: "A comprehensive guide to designing and implementing your first sustainable garden space.",
-      date: "March 15, 2024",
-      image: "/placeholder.svg"
-    },
-    {
-      title: "Companion Planting Workshop Results", 
-      excerpt: "Amazing outcomes from our recent workshop on companion planting techniques.",
-      date: "March 10, 2024",
-      image: "/placeholder.svg"
-    },
-    {
-      title: "Organic Pest Management Techniques",
-      excerpt: "Natural methods to protect your crops without harmful chemicals.",
-      date: "March 8, 2024", 
-      image: "/placeholder.svg"
-    }
-  ];
+  const latestPosts = blogData?.blogPosts
+    ?.sort((a, b) => new Date(b.date) - new Date(a.date))
+    ?.slice(0, 3) || [];
 
   return (
     <div className="space-y-0 overflow-hidden">
@@ -168,39 +167,62 @@ const Home = (props) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {latestPosts.map((post, index) => (
-              <Card key={index} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white">
-                <div className="h-48 bg-gradient-to-br from-emerald-100 to-green-100 overflow-hidden">
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                
-                <CardHeader>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                    <Calendar size={14} />
-                    <CardDescription className="text-sm text-muted-foreground">
-                      {post.date}
-                    </CardDescription>
+            {blogData ? latestPosts.map((post, index) => {
+              const generateSlug = (title) => {
+                return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+              };
+              
+              return (
+                <Card key={index} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white">
+                  <div className="h-48 bg-gradient-to-br from-emerald-100 to-green-100 overflow-hidden relative">
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                  <CardTitle className="font-heading text-lg line-clamp-2 group-hover:text-emerald-700 transition-colors duration-300">
-                    {post.title}
-                  </CardTitle>
-                </CardHeader>
-                
-                <CardContent>
-                  <p className="text-muted-foreground line-clamp-3 mb-4 leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                  <Button variant="outline" size="sm" className="group-hover:bg-emerald-50 group-hover:border-emerald-200 transition-colors duration-300">
-                    {t('readMore')}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                  
+                  <CardHeader>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                      <Calendar size={14} />
+                      <CardDescription className="text-sm text-muted-foreground">
+                        {post.date}
+                      </CardDescription>
+                    </div>
+                    <CardTitle className="font-heading text-lg line-clamp-2 group-hover:text-emerald-700 transition-colors duration-300">
+                      {post.title}
+                    </CardTitle>
+                  </CardHeader>
+                  
+                  <CardContent>
+                    <p className="text-muted-foreground line-clamp-3 mb-4 leading-relaxed">
+                      {post.excerpt}
+                    </p>
+                    <Link to={`/blog/post/${generateSlug(post.title)}`}>
+                      <Button variant="outline" size="sm" className="group-hover:bg-emerald-50 group-hover:border-emerald-200 transition-colors duration-300">
+                        {t('readMore')}
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              );
+            }) : (
+              Array.from({ length: 3 }).map((_, index) => (
+                <Card key={index} className="animate-pulse">
+                  <div className="h-48 bg-gray-200"></div>
+                  <CardHeader>
+                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-6 bg-gray-200 rounded"></div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-8 bg-gray-200 rounded"></div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
           </div>
         </div>
       </section>
