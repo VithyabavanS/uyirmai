@@ -91,6 +91,48 @@ graph TB
 
 </div>
 
+---
+
+## 📱 Page Showcase
+
+<table>
+<tr>
+<td align="center" width="33%">
+<img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Home+Page" alt="Home Page"/>
+<br><b>🏠 Home</b><br>
+<sub>Hero banner with dynamic content</sub>
+</td>
+<td align="center" width="33%">
+<img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Philosophy" alt="Philosophy"/>
+<br><b>💭 Philosophy</b><br>
+<sub>Mission, vision & values</sub>
+</td>
+<td align="center" width="33%">
+<img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Projects" alt="Projects"/>
+<br><b>🎯 Projects</b><br>
+<sub>Interactive project gallery</sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="33%">
+<img src="https://via.placeholder.com/300x200/9C27B0/FFFFFF?text=Blog" alt="Blog"/>
+<br><b>📝 Blog</b><br>
+<sub>Rich content management</sub>
+</td>
+<td align="center" width="33%">
+<img src="https://via.placeholder.com/300x200/607D8B/FFFFFF?text=Resources" alt="Resources"/>
+<br><b>📚 Resources</b><br>
+<sub>Educational materials</sub>
+</td>
+<td align="center" width="33%">
+<img src="https://via.placeholder.com/300x200/795548/FFFFFF?text=Products" alt="Products"/>
+<br><b>🛒 Products</b><br>
+<sub>Organic product showcase</sub>
+</td>
+</tr>
+</table>
+
+---
 
 ## 🚀 Quick Start
 
@@ -157,7 +199,117 @@ uyirmai-website/
 
 ---
 
-## 🌟 Key Features Deep Dive
+## 🔧 Development Workflow
+
+### 1. Content Editing
+```bash
+# Start dev server
+npm run dev
+
+# Navigate to http://localhost:8080/admin
+# Login with TinaCMS credentials
+# Edit content through visual editor
+```
+
+### 2. Code Development
+```
+Files are organized in src/ directory:
+├── src/components/     # Reusable UI components
+├── src/pages/         # Page components  
+├── src/components/ui/ # Base UI components
+└── src/context/       # React contexts
+```
+
+### 3. Building for Production
+```bash
+# Build static files
+npm run build
+
+# Files output to dist/ directory
+# Ready for deployment to any static host
+```
+
+---
+
+## 📄 Available Pages & Features
+
+### **Core Pages**
+- **Home** (`/`) - Hero section, features showcase
+- **Philosophy** (`/philosophy`) - Mission, vision, values  
+- **Projects** (`/projects`) - Project listings and events
+- **Blog** (`/blog`) - Blog posts with individual post pages (`/blog/post/:slug`)
+- **Resources** (`/resources`) - Downloadable materials
+- **Get Involved** (`/get-involved`) - Volunteer opportunities
+- **Products** (`/products`) - Product/service listings
+
+### **Content Management Features**
+1. **Admin Panel**: Visit `/admin` for content editing
+2. **Live Editing**: Content changes reflect immediately in development
+3. **Multi-language Support**: Switch between Tamil/English
+4. **Rich Text Editor**: Full WYSIWYG editing capabilities
+
+### **Content Types Managed via TinaCMS**
+- Home page content and hero sections
+- Philosophy sections (mission, vision, values)
+- Project listings with images and descriptions  
+- Blog posts with rich text and media
+- Resource files (PDFs, videos, documents)
+- Product catalogs with pricing
+- Volunteer opportunities and courses
+
+---
+
+## ⚙️ TinaCMS Setup (Optional)
+
+For full CMS functionality:
+
+1. **Get TinaCMS Account**: Sign up at [tina.io](https://tina.io)
+2. **Create Project**: Obtain your CLIENT_ID and TOKEN
+3. **Update Environment**:
+   ```bash
+   VITE_TINA_CLIENT_ID=your_client_id_here
+   VITE_TINA_TOKEN=your_token_here
+   ```
+
+---
+
+## 🚀 Deployment
+
+### **Static Hosting Options**
+- **Vercel**: `vercel --prod`
+- **Netlify**: Connect to Git repository
+- **GitHub Pages**: Deploy `dist/` folder
+
+### **Build Configuration**
+```bash
+# Build Command
+npm run build
+
+# Output Directory  
+dist/
+
+# Development Build
+npm run build:dev
+```
+
+---
+
+## 🛠️ Troubleshooting
+
+### **Common Issues & Solutions**
+
+| Issue | Solution |
+|-------|----------|
+| Port 8080 in use | Change port in `vite.config.ts` |
+| TinaCMS errors | Check environment variables in `.env` |
+| Build failures | Run `npm run lint` first to check code |
+| Content not saving | Verify TinaCMS credentials |
+
+### **Development Tips**
+- Use browser dev tools for responsive testing
+- Content changes auto-save in TinaCMS admin
+- TypeScript provides compile-time error checking
+- Hot reload is enabled for instant development feedback
 
 ### 🌍 Internationalization System
 
