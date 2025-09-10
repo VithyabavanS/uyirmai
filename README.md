@@ -271,30 +271,17 @@ For complete content management functionality:
 
 ---
 
-## 🚀 Deployment Guide
+## Deployment
 
-### Static Hosting (Recommended)
+### Static Hosting
+**Vercel**: `vercel --prod`  
+**Netlify**: Connect to Git repository  
+**GitHub Pages**: Deploy dist/ folder
 
-**Vercel Deployment**
-```bash
-vercel --prod
-```
-
-**Netlify Deployment**
-- Connect to Git repository
+**Build Configuration**:
 - Build command: `npm run build`
-- Publish directory: `dist`
-
-**GitHub Pages**
-```bash
-npm run build
-# Deploy dist/ folder to gh-pages branch
-```
-
-### Build Configuration
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist/`
-- **Node Version**: 16+
+- Output directory: `dist/`
+- Node version: 16+
 
 ---
 
