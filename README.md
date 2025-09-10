@@ -91,48 +91,6 @@ graph TB
 
 </div>
 
----
-
-## 📱 Page Showcase
-
-<table>
-<tr>
-<td align="center" width="33%">
-<img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Home+Page" alt="Home Page"/>
-<br><b>🏠 Home</b><br>
-<sub>Hero banner with dynamic content</sub>
-</td>
-<td align="center" width="33%">
-<img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Philosophy" alt="Philosophy"/>
-<br><b>💭 Philosophy</b><br>
-<sub>Mission, vision & values</sub>
-</td>
-<td align="center" width="33%">
-<img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Projects" alt="Projects"/>
-<br><b>🎯 Projects</b><br>
-<sub>Interactive project gallery</sub>
-</td>
-</tr>
-<tr>
-<td align="center" width="33%">
-<img src="https://via.placeholder.com/300x200/9C27B0/FFFFFF?text=Blog" alt="Blog"/>
-<br><b>📝 Blog</b><br>
-<sub>Rich content management</sub>
-</td>
-<td align="center" width="33%">
-<img src="https://via.placeholder.com/300x200/607D8B/FFFFFF?text=Resources" alt="Resources"/>
-<br><b>📚 Resources</b><br>
-<sub>Educational materials</sub>
-</td>
-<td align="center" width="33%">
-<img src="https://via.placeholder.com/300x200/795548/FFFFFF?text=Products" alt="Products"/>
-<br><b>🛒 Products</b><br>
-<sub>Organic product showcase</sub>
-</td>
-</tr>
-</table>
-
----
 
 ## 🚀 Quick Start
 
