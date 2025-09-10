@@ -172,144 +172,180 @@ npm --version   # v8.0.0 or higher
    npm run preview
    ```
 
----
+## 📁 Available Pages & Features
 
-## 📂 Project Structure
+### Core Pages
+- **Home (/)** - Hero section with dynamic content and features showcase
+- **Philosophy (/philosophy)** - Mission, vision, values, and organizational principles
+- **Projects (/projects)** - Interactive project listings and events timeline
+- **Blog (/blog)** - Rich content blog with individual post pages (`/blog/post/:slug`)
+- **Resources (/resources)** - Downloadable educational materials (PDFs, videos)
+- **Get Involved (/get-involved)** - Volunteer opportunities and course enrollment
+- **Products (/products)** - Organic product and service showcase
 
-```
-uyirmai-website/
-├── 🎨 src/
-│   ├── 🧩 components/          # Reusable UI components
-│   │   ├── common/            # Shared components
-│   │   ├── forms/             # Form components
-│   │   └── layout/            # Layout components
-│   ├── 📄 pages/              # Page components
-│   ├── 🌐 context/            # React contexts
-│   │   ├── LanguageContext.tsx
-│   │   └── ThemeContext.tsx
-│   ├── 🎣 hooks/              # Custom React hooks
-│   ├── 🛠️ utils/              # Utility functions
-│   ├── 🎯 types/              # TypeScript definitions
-│   └── 📦 assets/             # Static assets
-├── 🌍 public/                 # Public assets
-├── ⚙️ tina/                   # TinaCMS configuration
-├── 📚 docs/                   # Documentation
-└── 🔧 config/                 # Build configurations
-```
+### Key Features Available
+
+1. **Content Management**
+   - **Admin Panel**: Visit `/admin` for visual content editing
+   - **Live Editing**: Content changes reflect immediately in development
+   - **Multi-language Support**: Seamless Tamil/English switching
+   - **Rich Text Editor**: Full WYSIWYG editing capabilities
+
+2. **Content Types Managed via TinaCMS**
+   - Home page hero content and features
+   - Philosophy sections (mission, vision, values)
+   - Project listings with media galleries
+   - Blog posts with rich text formatting
+   - Resource file management (PDFs, videos, documents)
+   - Product catalogs with descriptions and images
+   - Volunteer opportunity listings
+   - Contact information and forms
 
 ---
 
 ## 🔧 Development Workflow
 
-### 1. Content Editing
+### Content Editing Process
 ```bash
-# Start dev server
+# 1. Start development server
 npm run dev
 
-# Navigate to http://localhost:8080/admin
-# Login with TinaCMS credentials
-# Edit content through visual editor
+# 2. Navigate to admin panel
+# Open http://localhost:8080/admin
+
+# 3. Login with TinaCMS credentials
+# Use visual editor for content changes
+
+# 4. Changes auto-save and reflect immediately
 ```
 
-### 2. Code Development
+### Code Development Structure
 ```
-Files are organized in src/ directory:
-├── src/components/     # Reusable UI components
-├── src/pages/         # Page components  
-├── src/components/ui/ # Base UI components
-└── src/context/       # React contexts
+src/
+├── components/           # Reusable UI components
+├── pages/               # Page components and routing
+├── components/ui/       # shadcn/ui component library
+├── context/            # React context providers
+├── hooks/              # Custom React hooks
+├── utils/              # Utility functions
+└── assets/             # Static assets and media
 ```
 
-### 3. Building for Production
+### Building for Production
 ```bash
-# Build static files
+# Build optimized static files
 npm run build
 
-# Files output to dist/ directory
-# Ready for deployment to any static host
+# Output directory: dist/
+# Ready for deployment to any static hosting service
 ```
 
 ---
 
-## 📄 Available Pages & Features
+## ⚙️ TinaCMS Configuration
 
-### **Core Pages**
-- **Home** (`/`) - Hero section, features showcase
-- **Philosophy** (`/philosophy`) - Mission, vision, values  
-- **Projects** (`/projects`) - Project listings and events
-- **Blog** (`/blog`) - Blog posts with individual post pages (`/blog/post/:slug`)
-- **Resources** (`/resources`) - Downloadable materials
-- **Get Involved** (`/get-involved`) - Volunteer opportunities
-- **Products** (`/products`) - Product/service listings
+### Basic Usage (No Account Required)
+The site works without TinaCMS credentials for development and viewing content.
 
-### **Content Management Features**
-1. **Admin Panel**: Visit `/admin` for content editing
-2. **Live Editing**: Content changes reflect immediately in development
-3. **Multi-language Support**: Switch between Tamil/English
-4. **Rich Text Editor**: Full WYSIWYG editing capabilities
+### Full CMS Setup (Optional)
+For complete content management functionality:
 
-### **Content Types Managed via TinaCMS**
-- Home page content and hero sections
-- Philosophy sections (mission, vision, values)
-- Project listings with images and descriptions  
-- Blog posts with rich text and media
-- Resource files (PDFs, videos, documents)
-- Product catalogs with pricing
-- Volunteer opportunities and courses
+1. **Get TinaCMS Account**
+   ```
+   Sign up at: https://tina.io
+   Create new project
+   ```
 
----
-
-## ⚙️ TinaCMS Setup (Optional)
-
-For full CMS functionality:
-
-1. **Get TinaCMS Account**: Sign up at [tina.io](https://tina.io)
-2. **Create Project**: Obtain your CLIENT_ID and TOKEN
-3. **Update Environment**:
+2. **Configure Environment**
    ```bash
+   # Update .env file
    VITE_TINA_CLIENT_ID=your_client_id_here
    VITE_TINA_TOKEN=your_token_here
    ```
 
+3. **Access Admin Features**
+   - Full visual editing
+   - Content publishing workflow
+   - Media management
+   - Multi-user collaboration
+
 ---
 
-## 🚀 Deployment
+## 🚀 Deployment Guide
 
-### **Static Hosting Options**
-- **Vercel**: `vercel --prod`
-- **Netlify**: Connect to Git repository
-- **GitHub Pages**: Deploy `dist/` folder
+### Static Hosting (Recommended)
 
-### **Build Configuration**
+**Vercel Deployment**
 ```bash
-# Build Command
-npm run build
-
-# Output Directory  
-dist/
-
-# Development Build
-npm run build:dev
+vercel --prod
 ```
 
+**Netlify Deployment**
+- Connect to Git repository
+- Build command: `npm run build`
+- Publish directory: `dist`
+
+**GitHub Pages**
+```bash
+npm run build
+# Deploy dist/ folder to gh-pages branch
+```
+
+### Build Configuration
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist/`
+- **Node Version**: 16+
+
 ---
 
-## 🛠️ Troubleshooting
+## 🔍 Troubleshooting
 
-### **Common Issues & Solutions**
+### Common Issues & Solutions
 
-| Issue | Solution |
-|-------|----------|
-| Port 8080 in use | Change port in `vite.config.ts` |
-| TinaCMS errors | Check environment variables in `.env` |
-| Build failures | Run `npm run lint` first to check code |
-| Content not saving | Verify TinaCMS credentials |
+**Port 8080 Already in Use**
+```typescript
+// Update vite.config.ts
+export default defineConfig({
+  server: {
+    port: 3000, // Change port number
+  },
+});
+```
 
-### **Development Tips**
-- Use browser dev tools for responsive testing
-- Content changes auto-save in TinaCMS admin
+**TinaCMS Authentication Errors**
+- Verify `VITE_TINA_CLIENT_ID` and `VITE_TINA_TOKEN` in `.env`
+- Check TinaCMS project settings
+- Ensure environment variables are properly formatted
+
+**Build Failures**
+```bash
+# Run linting first to catch errors
+npm run lint
+
+# Clear node_modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+
+# Check TypeScript compilation
+npx tsc --noEmit
+```
+
+**Development Server Issues**
+- Clear browser cache and cookies
+- Check console for JavaScript errors
+- Verify all environment variables are set
+- Restart development server
+
+### Development Tips
+- Use browser dev tools for responsive design testing
+- Content changes auto-save in TinaCMS development mode
 - TypeScript provides compile-time error checking
-- Hot reload is enabled for instant development feedback
+- Hot module replacement updates changes instantly
+- Use `npm run lint` before committing code
+
+---
+
+## 🌟 Key Features Deep Dive
 
 ### 🌍 Internationalization System
 
