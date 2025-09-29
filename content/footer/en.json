@@ -1,0 +1,22 @@
+{
+  "contact": {
+    "address": "123 Permaculture Lane, Green City, Earth 12345",
+    "phone": "+1 (123) 456-7890",
+    "email": "info@uyirmai.com"
+  },
+  "about": {
+    "title": "Uyirmai",
+    "description": "Dedicated to promoting sustainable living through permaculture, organic farming, and community education. Together, we cultivate a greener future."
+  },
+  "social": {
+    "title": "Follow Us",
+    "description": "Stay connected with our sustainable community and get the latest updates on workshops, events, and eco-friendly tips.",
+    "facebookUrl": "https://facebook.com/uyirmai",
+    "instagramUrl": "https://instagram.com/uyirmai",
+    "youtubeUrl": "https://youtube.com/@uyirmai"
+  },
+  "copyright": {
+    "text": "Uyirmai. All rights reserved. | Built with love for nature",
+    "year": "2024"
+  }
+}

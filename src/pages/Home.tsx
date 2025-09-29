@@ -21,6 +21,17 @@ const Home = (props) => {
 
   const homeData = data.home;
 
+  if (!homeData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-green-50">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 font-medium">Loading amazing content...</p>
+        </div>
+      </div>
+    );
+  }
+
   React.useEffect(() => {
     const fetchBlogData = async () => {
       try {
@@ -43,9 +54,9 @@ const Home = (props) => {
     "New Feature": Sparkles,
   };
 
-  const features = homeData.features.map((feature) => ({
+  const features = (homeData.features || []).map((feature) => ({
     ...feature,
-    icon: featureIcons[feature.title],
+    icon: featureIcons[feature.title] || Sparkles,
   }));
 
   const latestPosts = blogData?.blogPosts
