@@ -19,7 +19,7 @@ const Home = (props) => {
     data: props.data,
   });
 
-  const homeData = data.home;
+  const homeData = data?.home;
 
   if (!homeData) {
     return (
