@@ -1,6 +1,8 @@
 /// <reference types="node" />
 import { defineConfig } from "tinacms";
 
+// schema bump (trigger reindex)
+
 // Your hosting provider likely exposes this as an environment variable
 const branch =
   process.env.GITHUB_BRANCH ||
